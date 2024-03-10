@@ -2,9 +2,7 @@
 
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:function_world_app/core/app_colors.dart';
 
 class FavTile extends StatelessWidget {

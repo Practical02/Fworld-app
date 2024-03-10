@@ -10,7 +10,7 @@ class VendorsScreen extends StatefulWidget {
 class _VendorsScreenState extends State<VendorsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("vends"),
     );
   }

@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:function_world_app/core/app_colors.dart';
 
 class UserIntro extends StatefulWidget {
@@ -28,7 +25,7 @@ class _UserIntroState extends State<UserIntro> {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -56,10 +53,10 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -80,7 +77,7 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 TextButton(
@@ -88,7 +85,7 @@ class _UserIntroState extends State<UserIntro> {
                     fixedSize: MaterialStatePropertyAll(
                       Size.fromWidth(MediaQuery.sizeOf(context).width * 0.8),
                     ),
-                    padding: MaterialStatePropertyAll(
+                    padding: const MaterialStatePropertyAll(
                       EdgeInsetsDirectional.symmetric(
                         vertical: 12,
                       ),
@@ -99,10 +96,10 @@ class _UserIntroState extends State<UserIntro> {
                       ),
                     ),
                     backgroundColor:
-                        MaterialStatePropertyAll(AppColors.primaryColor),
+                        const MaterialStatePropertyAll(AppColors.primaryColor),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Login",
                     style: TextStyle(
                       fontSize: 18,
@@ -111,7 +108,7 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24,
                 ),
                 TextButton(
@@ -119,7 +116,7 @@ class _UserIntroState extends State<UserIntro> {
                     fixedSize: MaterialStatePropertyAll(
                       Size.fromWidth(MediaQuery.sizeOf(context).width * 0.8),
                     ),
-                    padding: MaterialStatePropertyAll(
+                    padding: const MaterialStatePropertyAll(
                       EdgeInsetsDirectional.symmetric(
                         vertical: 12,
                       ),
@@ -129,12 +126,12 @@ class _UserIntroState extends State<UserIntro> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(
+                    backgroundColor: const MaterialStatePropertyAll(
                       Colors.white,
                     ),
                   ),
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Sign Up",
                     style: TextStyle(
                       fontSize: 18,
@@ -143,12 +140,12 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Create a Vendor's Account",
                     style: TextStyle(
                       fontSize: 20,

@@ -47,9 +47,9 @@ class _ChatUSersScreenState extends State<ChatUSersScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Icon(Icons.arrow_back, color: AppColors.primaryColor),
+          child: const Icon(Icons.arrow_back, color: AppColors.primaryColor),
         ),
-        title: Text(
+        title: const Text(
           "Messages",
           style: TextStyle(color: Colors.white),
         ),
@@ -58,17 +58,17 @@ class _ChatUSersScreenState extends State<ChatUSersScreen> {
         itemCount: chatUsers.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 20,
             ),
             title: Text(
               chatUsers[index],
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               'Message preview...',
               style: TextStyle(color: Colors.white),
             ),

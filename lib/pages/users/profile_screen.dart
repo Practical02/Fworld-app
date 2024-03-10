@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -48,26 +46,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
-              CircleAvatar(
+              const SizedBox(height: 30),
+              const CircleAvatar(
                 radius: 60,
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 "John Doe",
                 style: TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
-              Row(
+              const SizedBox(height: 20),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "47",
                     style: TextStyle(
-                        color: const Color.fromRGBO(201, 176, 89, 1),
+                        color: Color.fromRGBO(201, 176, 89, 1),
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
@@ -95,13 +93,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Edit Profile",
                       style: TextStyle(
                           color: Colors.white,
@@ -109,10 +107,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Find Vendors",
                       style: TextStyle(
                           color: Colors.white,
@@ -122,11 +120,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () {},
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 76.0),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 76.0),
                   child: Text(
                     "Logout",
                     style: TextStyle(
@@ -136,11 +134,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25),
               Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 12),
-                child: Text(
+                padding: const EdgeInsets.only(left: 12),
+                child: const Text(
                   "Our Recommendations",
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -149,22 +147,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       fontWeight: FontWeight.w700),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               FutureBuilder<List<Album>>(
                 future: pics,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else {
                     return GridView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 4,
-                          mainAxisSpacing: 4),
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 4,
+                              mainAxisSpacing: 4),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return FavTile(

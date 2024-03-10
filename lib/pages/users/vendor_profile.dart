@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:convert';
 
 import 'package:function_world_app/widgets/gallery_tile.dart';
@@ -56,12 +54,12 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                 width: MediaQuery.sizeOf(context).width,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: Image(
+                child: const Image(
                   image: NetworkImage('https://picsum.photos/360/300'),
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 26,
               ),
               Padding(
@@ -69,7 +67,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         CircleAvatar(
                           radius: 24,
@@ -116,7 +114,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                                 height: 28,
                               ),
                             ),
-                            Text(
+                            const Text(
                               "475 likes",
                               style: TextStyle(
                                   color: AppColors.primaryColor,
@@ -128,7 +126,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 15),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
@@ -139,7 +137,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                                     : Colors.transparent),
                             child: Text(
                               isFollowing ? "Following" : "Follow",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
@@ -161,18 +159,18 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 "We provide the best",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
-              Text(
+              const Text(
                 "Our team is composed of highly skilled event planners, coordinators, designers, and logistical experts who thrive on turning your vision into reality. We understand that each event is unique, and we pride ourselves on delivering personalized solutions tailored to your specific needs and goals.",
                 style: TextStyle(
                     color: Colors.white,
@@ -180,29 +178,30 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                     fontWeight: FontWeight.normal),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 12),
-              Text(
+              const SizedBox(height: 12),
+              const Text(
                 "Our Gallery",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FutureBuilder<List<Album>>(
                   future: pics,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else {
                       return GridView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisSpacing: 12,
                           crossAxisSpacing: 14,
