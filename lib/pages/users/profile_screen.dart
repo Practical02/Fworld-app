@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<List<Album>> fetchAlbum() async {
     final response = await http.get(
-      Uri.parse('https://picsum.photos/v2/list?page=2&limit=4'),
+      Uri.parse('https://picsum.photos/v2/list?page=2&limit=9'),
     );
 
     if (response.statusCode == 200) {
@@ -162,9 +162,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 2,
-                      ),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 4,
+                          mainAxisSpacing: 4),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return FavTile(

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/navigation.dart';
 import 'package:function_world_app/pages/users/chat_list.dart';
-import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 
 void main() {
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SafeArea(child: UserLogin()),
+      home: SafeArea(child: NavigationScreen()),
       routes: {
         ChatUSersScreen.routeName: (context) => ChatUSersScreen(),
       },

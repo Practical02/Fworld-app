@@ -20,8 +20,8 @@ class HomeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
