@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:function_world_app/core/app_colors.dart';
+import 'package:function_world_app/pages/navigation.dart';
+import 'package:function_world_app/pages/users/vendor_profile.dart';
 import 'package:function_world_app/widgets/home_tile.dart';
 import 'package:http/http.dart' as http;
 
@@ -59,10 +61,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       // Handle tap
                     },
-                    child: HomeTile(
-                      imageUrl: snapshot.data![index].url,
-                      title: "Test Heading 1",
-                      subTitle: "Test sub heading 348u73",
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserVendorProfile(),
+                          ),
+                        );
+                      },
+                      child: HomeTile(
+                        imageUrl: snapshot.data![index].url,
+                        title: "Test Heading 1",
+                        subTitle: "Test sub heading 348u73",
+                      ),
                     ),
                   ),
                 );

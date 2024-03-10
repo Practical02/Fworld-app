@@ -8,7 +8,7 @@ import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/widgets/fav_tiles.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
