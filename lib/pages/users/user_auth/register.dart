@@ -1,28 +1,27 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/navigation.dart';
-import 'package:function_world_app/pages/users/user_auth/forgot_password.dart';
-import 'package:function_world_app/pages/users/user_auth/register.dart';
+import 'package:function_world_app/pages/users/user_auth/login.dart';
+import 'package:function_world_app/pages/users/user_auth/verification.dart';
+import 'package:function_world_app/pages/users/user_intro.dart';
 
-class UserLogin extends StatefulWidget {
-  const UserLogin({super.key});
+class UserRegistration extends StatefulWidget {
+  const UserRegistration({Key? key});
 
-  static String routeName = "/user/login";
+  static String routeName = "/user/registration";
 
   @override
-  State<UserLogin> createState() => _UserLoginState();
+  State<UserRegistration> createState() => _UserRegistrationState();
 }
 
-class _UserLoginState extends State<UserLogin> {
+class _UserRegistrationState extends State<UserRegistration> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
 
+  String nameError = '';
   String emailError = '';
   String passwordError = '';
 
@@ -34,12 +33,20 @@ class _UserLoginState extends State<UserLogin> {
 
   void validateFields() {
     setState(() {
+      nameError = '';
       emailError = '';
       passwordError = '';
     });
 
+    final String name = nameController.text.trim();
     final String email = emailController.text.trim();
     final String password = passwordController.text;
+
+    if (name.isEmpty) {
+      setState(() {
+        nameError = 'Name is required';
+      });
+    }
 
     if (email.isEmpty) {
       setState(() {
@@ -86,7 +93,7 @@ class _UserLoginState extends State<UserLogin> {
               alignment: Alignment.topLeft,
               child: Container(
                 padding: EdgeInsets.only(left: 24),
-                height: MediaQuery.sizeOf(context).height * 0.25,
+                height: MediaQuery.of(context).size.height * 0.25,
                 child: Stack(
                   children: [
                     Column(
@@ -94,7 +101,7 @@ class _UserLoginState extends State<UserLogin> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Enter the realm",
+                          "Create an account",
                           style: TextStyle(
                             fontSize: 38,
                             fontWeight: FontWeight.bold,
@@ -102,7 +109,7 @@ class _UserLoginState extends State<UserLogin> {
                           ),
                         ),
                         Text(
-                          "of immaculate occasions.",
+                          "embrace the future of event planning.",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -127,8 +134,8 @@ class _UserLoginState extends State<UserLogin> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              width: MediaQuery.sizeOf(context).width,
-              height: MediaQuery.sizeOf(context).height * 0.75,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.75,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
@@ -151,7 +158,7 @@ class _UserLoginState extends State<UserLogin> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Email',
+                                'Name',
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.bold,
@@ -169,10 +176,44 @@ class _UserLoginState extends State<UserLogin> {
                                     5.0), // Rounded corners if desired
                               ),
                               child: TextField(
-                                controller: emailController,
+                                controller: nameController,
                                 decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
+                                  hintText: 'Enter your name',
+                                  hintStyle: TextStyle(color: Colors.black38),
+                                  contentPadding: EdgeInsets.all(8.0),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Email',
+                                style: TextStyle(
+                                  color: Colors.black38,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black38.withOpacity(0.5),
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: TextField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   hintText: 'Enter your email',
                                   hintStyle: TextStyle(color: Colors.black38),
                                   contentPadding: EdgeInsets.all(8.0),
@@ -231,39 +272,32 @@ class _UserLoginState extends State<UserLogin> {
                           child: Row(
                             children: [
                               Text(
+                                (nameError ?? ""),
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              Text(
+                                nameError.isNotEmpty &
+                                        emailError.isNotEmpty &
+                                        passwordError.isNotEmpty
+                                    ? ", "
+                                    : "",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              Text(
                                 (emailError ?? ""),
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
                                 emailError.isNotEmpty & passwordError.isNotEmpty
-                                    ? " and "
+                                    ? ", "
                                     : "",
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
-                                passwordError ?? "",
+                                (passwordError ?? ""),
                                 style: TextStyle(color: Colors.red),
                               )
                             ],
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                ForgotPasswordScreen.routeName,
-                              );
-                            },
-                            child: Text(
-                              'Forgot Password ? ',
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontFamily: 'Gilroy',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ),
                         ),
                         SizedBox(height: 30),
@@ -272,8 +306,8 @@ class _UserLoginState extends State<UserLogin> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  NavigationScreen.routeName, (route) => false);
+                              Navigator.pushNamed(
+                                  context, EmailVerificationScreen.routeName);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -290,7 +324,7 @@ class _UserLoginState extends State<UserLogin> {
                                 vertical: 12.0,
                               ),
                               child: const Text(
-                                'Login',
+                                'Create your Account',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -306,7 +340,7 @@ class _UserLoginState extends State<UserLogin> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don’t have an account?",
+                          "Already have an account?",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black45,
@@ -315,11 +349,16 @@ class _UserLoginState extends State<UserLogin> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, UserRegistration.routeName);
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              UserLogin.routeName,
+                              ModalRoute.withName(
+                                UserIntro.routeName,
+                              ),
+                            );
                           },
                           child: Text(
-                            "Register Now",
+                            "Login",
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.primaryColor,
@@ -341,6 +380,7 @@ class _UserLoginState extends State<UserLogin> {
 
   @override
   void dispose() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();

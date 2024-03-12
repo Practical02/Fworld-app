@@ -9,6 +9,7 @@ import 'package:function_world_app/pages/users/vendors_screen.dart';
 import 'package:function_world_app/widgets/navbar_item.dart';
 
 class NavigationScreen extends StatefulWidget {
+  static String routeName = "/user/nav";
   const NavigationScreen({super.key});
 
   @override

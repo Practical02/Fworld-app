@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
+import 'package:function_world_app/pages/users/user_auth/login.dart';
+import 'package:function_world_app/pages/users/user_auth/register.dart';
 
 class UserIntro extends StatefulWidget {
+  static String routeName = "/";
   const UserIntro({super.key});
 
   @override
@@ -98,7 +101,9 @@ class _UserIntroState extends State<UserIntro> {
                     backgroundColor:
                         const MaterialStatePropertyAll(AppColors.primaryColor),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(UserLogin.routeName);
+                  },
                   child: const Text(
                     "Login",
                     style: TextStyle(
@@ -130,7 +135,9 @@ class _UserIntroState extends State<UserIntro> {
                       Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, UserRegistration.routeName);
+                  },
                   child: const Text(
                     "Sign Up",
                     style: TextStyle(
