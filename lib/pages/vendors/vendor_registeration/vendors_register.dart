@@ -4,18 +4,18 @@ import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 
-class UserRegistration extends StatefulWidget {
-  const UserRegistration({
+class VendorRegistration extends StatefulWidget {
+  const VendorRegistration({
     super.key,
   });
 
-  static String routeName = "/user/registration";
+  static String routeName = "/vendor/registration";
 
   @override
-  State<UserRegistration> createState() => _UserRegistrationState();
+  State<VendorRegistration> createState() => VendorrRegistrationState();
 }
 
-class _UserRegistrationState extends State<UserRegistration> {
+class VendorrRegistrationState extends State<VendorRegistration> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();

@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/widgets/fav_tiles.dart';
 
 import 'package:http/http.dart' as http;

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/users/user_auth/login.dart';
-import 'package:function_world_app/pages/users/user_auth/register.dart';
-import 'package:function_world_app/pages/vendors/vendors_intro.dart';
+import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
+import 'package:function_world_app/pages/vendors/vendors_login.dart';
 
-class UserIntro extends StatefulWidget {
-  static String routeName = "/";
-  const UserIntro({super.key});
+class VendorsIntro extends StatefulWidget {
+  static String routeName = "/vendor/intro";
+  const VendorsIntro({super.key});
 
   @override
-  State<UserIntro> createState() => _UserIntroState();
+  State<VendorsIntro> createState() => _VendorsIntroState();
 }
 
-class _UserIntroState extends State<UserIntro> {
+class _VendorsIntroState extends State<VendorsIntro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +103,7 @@ class _UserIntroState extends State<UserIntro> {
                         const MaterialStatePropertyAll(AppColors.primaryColor),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(UserLogin.routeName);
+                    Navigator.of(context).pushNamed(VendorLogin.routeName);
                   },
                   child: const Text(
                     "Login",
@@ -137,7 +137,7 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, UserRegistration.routeName);
+                    Navigator.pushNamed(context, VendorRegistration.routeName);
                   },
                   child: const Text(
                     "Sign Up",
@@ -153,10 +153,11 @@ class _UserIntroState extends State<UserIntro> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, VendorsIntro.routeName);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, UserIntro.routeName, (route) => false);
                   },
                   child: const Text(
-                    "Create a Vendor's Account",
+                    "Login/Create User Account",
                     style: TextStyle(
                       fontSize: 20,
                       color: AppColors.primaryColor,

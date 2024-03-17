@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/navigation.dart';
+import 'package:function_world_app/pages/users/navigation.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
-  EmailVerificationScreen({Key? key});
+  const EmailVerificationScreen({super.key});
 
   static String routeName = "/user/verify";
 
@@ -33,7 +33,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -46,11 +46,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Align(
               alignment: Alignment.topLeft,
               child: Container(
-                padding: EdgeInsets.only(left: 24),
+                padding: const EdgeInsets.only(left: 24),
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: Stack(
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -82,7 +82,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.75,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
                 ),
@@ -93,24 +93,24 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Text(
                       'An OTP has been sent to ${widget.email}.',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextField(
                       controller: otpController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter OTP',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
@@ -128,11 +128,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                             ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
                             vertical: 12.0,
                           ),
-                          child: const Text(
+                          child: Text(
                             'Verify',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

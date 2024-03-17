@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/navigation.dart';
+import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/chat_list.dart';
 import 'package:function_world_app/pages/users/user_auth/forgot_password.dart';
 import 'package:function_world_app/pages/users/user_auth/login.dart';
@@ -11,6 +11,10 @@ import 'package:function_world_app/pages/users/user_auth/otp_verification.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:function_world_app/pages/vendors/vendor_nav.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
+import 'package:function_world_app/pages/vendors/vendors_intro.dart';
+import 'package:function_world_app/pages/vendors/vendors_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +47,12 @@ class MyApp extends StatelessWidget {
         OTPVerificationScreen.routeName: (context) => OTPVerificationScreen(),
         PasswordResetScreen.routeName: (context) => PasswordResetScreen(),
         NavigationScreen.routeName: (context) => NavigationScreen(),
+        VendorsIntro.routeName: (context) => VendorsIntro(),
+        VendorLogin.routeName: (context) => VendorLogin(),
+        VendorNavigationScreen.routeName: (context) => VendorNavigationScreen(),
+        VendorRegistration.routeName: (context) => VendorRegistration(),
+        EmailVerificationScreen.routeName: (context) =>
+            EmailVerificationScreen(),
       },
     );
   }

@@ -4,7 +4,7 @@ import 'package:function_world_app/pages/users/user_auth/otp_verification.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+  const ForgotPasswordScreen({super.key});
 
   static String routeName = "/user/forgot_password";
 
@@ -31,7 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -44,11 +44,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             child: Align(
               alignment: Alignment.topLeft,
               child: Container(
-                padding: EdgeInsets.only(left: 24),
+                padding: const EdgeInsets.only(left: 24),
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: Stack(
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -80,7 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.75,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
                 ),
@@ -93,14 +93,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   children: [
                     Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Enter your Email Address',
                                 style: TextStyle(
@@ -119,7 +119,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               ),
                               child: TextField(
                                 controller: emailController,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Email address',
                                   hintStyle: TextStyle(color: Colors.black38),
@@ -129,7 +129,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
                           child: ElevatedButton(
@@ -147,11 +147,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                 ),
                               ),
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
                                 vertical: 12.0,
                               ),
-                              child: const Text(
+                              child: Text(
                                 'Send',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -162,13 +162,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextButton(
                           onPressed: () {
                             // Navigate back to login screen
                             Navigator.pop(context);
                           },
-                          child: Text(
+                          child: const Text(
                             'Back to login',
                             style: TextStyle(
                               color: AppColors.primaryColor,
@@ -181,7 +181,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Don’t have an account? ",
                           style: TextStyle(
                             fontSize: 16,
@@ -198,7 +198,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               UserRegistration.routeName,
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             "Register Now",
                             style: TextStyle(
                               fontSize: 16,

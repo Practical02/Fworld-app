@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:http/http.dart' as http;
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/widgets/fav_tiles.dart';
@@ -122,7 +123,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const SizedBox(height: 12),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, UserIntro.routeName, (route) => false);
+                },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 76.0),
                   child: Text(

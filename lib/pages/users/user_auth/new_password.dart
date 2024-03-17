@@ -32,7 +32,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -45,11 +45,11 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
             child: Align(
               alignment: Alignment.topLeft,
               child: Container(
-                padding: EdgeInsets.only(left: 24),
+                padding: const EdgeInsets.only(left: 24),
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: Stack(
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,7 +81,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.75,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
                 ),
@@ -94,14 +94,14 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                   children: [
                     Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'New Password',
                                 style: TextStyle(
@@ -121,7 +121,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                               child: TextField(
                                 controller: newPasswordController,
                                 obscureText: true,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Enter new password',
                                   hintStyle: TextStyle(color: Colors.black38),
@@ -131,12 +131,12 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Confirm Password',
                                 style: TextStyle(
@@ -156,7 +156,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                               child: TextField(
                                 controller: confirmPasswordController,
                                 obscureText: true,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'Confirm new password',
                                   hintStyle: TextStyle(color: Colors.black38),
@@ -177,10 +177,7 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                               confirmPasswordController.text;
 
                           if (newPassword == confirmPassword) {
-                            print('Passwords match');
-                          } else {
-                            print('Passwords do not match');
-                          }
+                          } else {}
 
                           Navigator.pushNamedAndRemoveUntil(
                             context,
@@ -199,11 +196,11 @@ class _PasswordResetScreenState extends State<PasswordResetScreen> {
                             ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
                             vertical: 12.0,
                           ),
-                          child: const Text(
+                          child: Text(
                             'Confirm',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

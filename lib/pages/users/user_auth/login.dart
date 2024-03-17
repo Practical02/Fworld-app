@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/navigation.dart';
+import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/user_auth/forgot_password.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
 
@@ -231,7 +229,7 @@ class _UserLoginState extends State<UserLogin> {
                           child: Row(
                             children: [
                               Text(
-                                (emailError ?? ""),
+                                (emailError),
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
@@ -241,7 +239,7 @@ class _UserLoginState extends State<UserLogin> {
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
-                                passwordError ?? "",
+                                passwordError,
                                 style: TextStyle(color: Colors.red),
                               )
                             ],
