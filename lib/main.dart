@@ -14,6 +14,12 @@ import 'package:function_world_app/pages/users/user_auth/register.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
+import 'package:function_world_app/pages/vendors/vendor_profile.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_gallery.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_portfolio.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_social.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_welcome.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';
@@ -39,8 +45,24 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: RoutesConstant.userIntro,
-      getPages: getPages,
+      home: SafeArea(child: UserIntro()),
+      routes: {
+        ChatUSersScreen.routeName: (context) => ChatUSersScreen(),
+        UserLogin.routeName: (context) => UserLogin(),
+        UserRegistration.routeName: (context) => UserRegistration(),
+        EmailVerificationScreen.routeName: (context) =>
+            EmailVerificationScreen(),
+        ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
+        OTPVerificationScreen.routeName: (context) => OTPVerificationScreen(),
+        PasswordResetScreen.routeName: (context) => PasswordResetScreen(),
+        NavigationScreen.routeName: (context) => NavigationScreen(),
+        VendorsIntro.routeName: (context) => VendorsIntro(),
+        VendorLogin.routeName: (context) => VendorLogin(),
+        VendorNavigationScreen.routeName: (context) => VendorNavigationScreen(),
+        VendorRegistration.routeName: (context) => VendorRegistration(),
+        EmailVerificationScreen.routeName: (context) =>
+            EmailVerificationScreen(),
+      },
     );
   }
 }
