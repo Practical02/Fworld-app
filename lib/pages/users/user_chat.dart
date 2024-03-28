@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/core/service/chat_service.dart';
+import 'package:function_world_app/services/chat_service.dart';
 import 'package:function_world_app/models/message_model.dart';
 
 import 'package:flutter/material.dart';
