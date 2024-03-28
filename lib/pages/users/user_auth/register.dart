@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/consumer/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:get/get.dart';
 
 class UserRegistration extends StatefulWidget {
   const UserRegistration({
@@ -16,6 +18,7 @@ class UserRegistration extends StatefulWidget {
 }
 
 class _UserRegistrationState extends State<UserRegistration> {
+  AuthController authController = Get.put(AuthController());
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -307,8 +310,11 @@ class _UserRegistrationState extends State<UserRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Navigator.pushNamed(
-                                  context, EmailVerificationScreen.routeName);
+                              authController.registerVendor(
+                                nameController.text, 
+                                emailController.text, 
+                                passwordController.text
+                              );
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

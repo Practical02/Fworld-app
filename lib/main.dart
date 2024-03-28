@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/get_pages_constant.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/chat_list.dart';
@@ -22,6 +24,7 @@ import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_wel
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Gilroy',
@@ -60,13 +63,6 @@ class MyApp extends StatelessWidget {
         VendorRegistration.routeName: (context) => VendorRegistration(),
         EmailVerificationScreen.routeName: (context) =>
             EmailVerificationScreen(),
-        VendorGallery.routeName: (context) => VendorGallery(),
-        VendorPaymentGatewayScreen.routeName: (context) =>
-            VendorPaymentGatewayScreen(),
-        VendorPortfolio.routeName: (context) => VendorPortfolio(),
-        VendorSocial.routeName: (context) => VendorSocial(),
-        VendorsWelcome.routeName: (context) => VendorsWelcome(),
-        VendorProfile.routeName: (context) => VendorProfile(),
         VendorProfileEdit.routeName: (context) => VendorProfileEdit(),
       },
     );

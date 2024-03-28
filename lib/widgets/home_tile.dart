@@ -1,20 +1,29 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
 
-class HomeTile extends StatelessWidget {
+class HomeTile extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String subTitle;
+  final Function(bool)? onImageLoaded;
+
   const HomeTile({
-    super.key,
+    Key? key,
     required this.imageUrl,
     required this.title,
     required this.subTitle,
-  });
+    this.onImageLoaded,
+  }) : super(key: key);
+
+  @override
+  _HomeTileState createState() => _HomeTileState();
+}
+
+class _HomeTileState extends State<HomeTile> {
+  bool _isImageLoaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +32,18 @@ class HomeTile extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Image(
-            image: NetworkImage(imageUrl),
+          CachedNetworkImage(
+            imageUrl: widget.imageUrl,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            imageBuilder: (context, imageProvider) {
+              // Image loaded callback
+              if (!_isImageLoaded && widget.onImageLoaded != null) {
+                widget.onImageLoaded!(true);
+                _isImageLoaded = true;
+              }
+              return Image(image: imageProvider);
+            },
           ),
           ClipRect(
             child: BackdropFilter(
@@ -51,7 +70,7 @@ class HomeTile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            title,
+                            widget.title,
                             style: TextStyle(
                                 fontSize: 9,
                                 fontWeight: FontWeight.w900,
@@ -59,7 +78,7 @@ class HomeTile extends StatelessWidget {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            subTitle,
+                            widget.subTitle,
                             style: TextStyle(
                                 fontSize: 9,
                                 fontWeight: FontWeight.w500,

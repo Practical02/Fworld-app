@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/consumer/verify_email.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
-
-  static String routeName = "/user/verify";
-
-  final String email = "jabajaba@gmail.com";
-
   @override
   _EmailVerificationScreenState createState() =>
       _EmailVerificationScreenState();
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final VerifyEmailController verifyEmailController = Get.put(VerifyEmailController());
   TextEditingController otpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final String email = Get.arguments != null ? Get.arguments as String : '';
     return Scaffold(
       body: Stack(
         children: [
@@ -97,7 +97,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       height: 50,
                     ),
                     Text(
-                      'An OTP has been sent to ${widget.email}.',
+                      'An OTP has been sent to $email.',
                       style: const TextStyle(
                         fontSize: 18,
                       ),
@@ -115,8 +115,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context,
-                              NavigationScreen.routeName, (route) => false);
+                          verifyEmailController.verifyOTP(int.parse(otpController.text));
                         },
                         style: ButtonStyle(
                           backgroundColor:
