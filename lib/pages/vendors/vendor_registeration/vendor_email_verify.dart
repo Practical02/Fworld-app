@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
+import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   static const routeName = '/vendor/email_verification';
@@ -133,6 +134,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     : SizedBox(),
                 ElevatedButton(
                   onPressed: () {
+                    Navigator.pushNamed(
+                        context, VendorPaymentGatewayScreen.routeName);
                     setState(() {
                       _isOtpVisible = true;
                     });
