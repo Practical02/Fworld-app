@@ -13,7 +13,8 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
-  final VerifyEmailController verifyEmailController = Get.put(VerifyEmailController());
+  final VerifyEmailController verifyEmailController =
+      Get.put(VerifyEmailController());
   TextEditingController otpController = TextEditingController();
 
   @override
@@ -115,7 +116,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
                         onPressed: () {
-                          verifyEmailController.verifyOTP(int.parse(otpController.text));
+                          verifyEmailController
+                              .verifyOTP(int.parse(otpController.text));
                         },
                         style: ButtonStyle(
                           backgroundColor:

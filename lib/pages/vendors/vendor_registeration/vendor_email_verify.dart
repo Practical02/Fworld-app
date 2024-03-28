@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
 
-class EmailVerificationScreen extends StatefulWidget {
+class VendorEmailVerificationScreen extends StatefulWidget {
   static const routeName = '/vendor/email_verification';
 
-  const EmailVerificationScreen({super.key});
+  const VendorEmailVerificationScreen({super.key});
 
   @override
-  State<EmailVerificationScreen> createState() =>
-      _EmailVerificationScreenState();
+  State<VendorEmailVerificationScreen> createState() =>
+      _VendorEmailVerificationScreenState();
 }
 
-class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+class _VendorEmailVerificationScreenState
+    extends State<VendorEmailVerificationScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
 
