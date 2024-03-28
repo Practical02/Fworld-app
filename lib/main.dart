@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/get_pages_constant.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/chat_list.dart';
@@ -15,6 +17,7 @@ import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Gilroy',
@@ -36,24 +39,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SafeArea(child: UserIntro()),
-      routes: {
-        ChatUSersScreen.routeName: (context) => ChatUSersScreen(),
-        UserLogin.routeName: (context) => UserLogin(),
-        UserRegistration.routeName: (context) => UserRegistration(),
-        EmailVerificationScreen.routeName: (context) =>
-            EmailVerificationScreen(),
-        ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
-        OTPVerificationScreen.routeName: (context) => OTPVerificationScreen(),
-        PasswordResetScreen.routeName: (context) => PasswordResetScreen(),
-        NavigationScreen.routeName: (context) => NavigationScreen(),
-        VendorsIntro.routeName: (context) => VendorsIntro(),
-        VendorLogin.routeName: (context) => VendorLogin(),
-        VendorNavigationScreen.routeName: (context) => VendorNavigationScreen(),
-        VendorRegistration.routeName: (context) => VendorRegistration(),
-        EmailVerificationScreen.routeName: (context) =>
-            EmailVerificationScreen(),
-      },
+      initialRoute: RoutesConstant.userIntro,
+      getPages: getPages,
     );
   }
 }

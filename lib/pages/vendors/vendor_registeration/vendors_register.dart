@@ -307,8 +307,8 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Navigator.pushNamed(
-                                  context, EmailVerificationScreen.routeName);
+                              // Navigator.pushNamed(
+                              //     context, EmailVerificationScreen.routeName);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

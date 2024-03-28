@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class UserIntro extends StatefulWidget {
   static String routeName = "/";
@@ -137,7 +140,7 @@ class _UserIntroState extends State<UserIntro> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, UserRegistration.routeName);
+                    Get.toNamed(RoutesConstant.userRegister);
                   },
                   child: const Text(
                     "Sign Up",

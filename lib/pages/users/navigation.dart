@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/users/chat_list.dart';
 import 'package:function_world_app/pages/users/favourites_screen.dart';
 import 'package:function_world_app/pages/users/home_screen.dart';
 import 'package:function_world_app/pages/users/profile_screen.dart';
 import 'package:function_world_app/pages/users/vendor_profile.dart';
 import 'package:function_world_app/pages/users/vendors_screen.dart';
 import 'package:function_world_app/widgets/navbar_item.dart';
+import 'package:get/get.dart';
 
 class NavigationScreen extends StatefulWidget {
   static String routeName = "/user/nav";
@@ -71,7 +72,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                       MaterialStateProperty.all<Color>(Colors.transparent),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(ChatUSersScreen.routeName);
+                  Get.toNamed(RoutesConstant.userChat);
                 },
                 child: const Image(
                   image: AssetImage('assets/icons/Chat.png'),
