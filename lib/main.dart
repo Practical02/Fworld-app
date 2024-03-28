@@ -13,6 +13,7 @@ import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_profile.dart';
+import 'package:function_world_app/pages/vendors/vendor_profile_edit.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_gallery.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_portfolio.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         VendorSocial.routeName: (context) => VendorSocial(),
         VendorsWelcome.routeName: (context) => VendorsWelcome(),
         VendorProfile.routeName: (context) => VendorProfile(),
+        VendorProfileEdit.routeName: (context) => VendorProfileEdit(),
       },
     );
   }
