@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/core/service/payment_service.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_welcome.dart';
 
 class VendorPaymentGatewayScreen extends StatefulWidget {
@@ -15,14 +14,11 @@ class VendorPaymentGatewayScreen extends StatefulWidget {
 
 class _VendorPaymentGatewayScreenState
     extends State<VendorPaymentGatewayScreen> {
-  late PaymentService _paymentService;
   var err = null;
 
   @override
   void initState() {
     super.initState();
-
-    _paymentService = PaymentService();
   }
 
   @override
@@ -93,11 +89,7 @@ class _VendorPaymentGatewayScreenState
                 ),
               ),
               onPressed: () {
-                err = _paymentService.makePayment();
-
-                if (err == null) {
                   Navigator.pushNamed(context, VendorsWelcome.routeName);
-                }
               },
               child: Text(
                 "Pay Now",

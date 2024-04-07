@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:function_world_app/constants/get_pages_constant.dart';
-import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/chat_list.dart';
@@ -11,17 +9,10 @@ import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_auth/new_password.dart';
 import 'package:function_world_app/pages/users/user_auth/otp_verification.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
-import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
-import 'package:function_world_app/pages/vendors/vendor_profile.dart';
 import 'package:function_world_app/pages/vendors/vendor_profile_edit.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_email_verify.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_gallery.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_portfolio.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_social.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_welcome.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';

@@ -42,10 +42,8 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   carousel_slider: ^4.2.1
   flutter_dotenv: ^5.1.0
-  flutter_stripe: ^10.1.1
   cloud_firestore: ^4.15.10
   shared_preferences: ^2.2.2
-
 
 dev_dependencies:
   flutter_test:

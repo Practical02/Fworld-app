@@ -17,21 +17,21 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 
 List<GetPage> getPages = [
 
-  GetPage(name: RoutesConstant.userIntro, page: () => UserIntro()),
-  GetPage(name: RoutesConstant.userRegister, page: () => UserRegistration()),
-  GetPage(name: RoutesConstant.userLogin, page: () => UserLogin()),
-  GetPage(name: RoutesConstant.userNavigation, page: () => NavigationScreen()),
-  GetPage(name: RoutesConstant.userChat, page: () => ChatUSersScreen()),
+  GetPage(name: RoutesConstant.userIntro, page: () => const UserIntro()),
+  GetPage(name: RoutesConstant.userRegister, page: () => const UserRegistration()),
+  GetPage(name: RoutesConstant.userLogin, page: () => const UserLogin()),
+  GetPage(name: RoutesConstant.userNavigation, page: () => const NavigationScreen()),
+  GetPage(name: RoutesConstant.userChat, page: () => const ChatUSersScreen()),
 
 
-  GetPage(name: RoutesConstant.vendorIntro, page: () => VendorsIntro()),
-  GetPage(name: RoutesConstant.vendorRegister, page: () => VendorRegistration()),
-  GetPage(name: RoutesConstant.vendorLogin, page: () => VendorLogin()),
-  GetPage(name: RoutesConstant.vendorIntro, page: () => VendorNavigationScreen()),
+  GetPage(name: RoutesConstant.vendorIntro, page: () => const VendorsIntro()),
+  GetPage(name: RoutesConstant.vendorRegister, page: () => const VendorRegistration()),
+  GetPage(name: RoutesConstant.vendorLogin, page: () => const VendorLogin()),
+  GetPage(name: RoutesConstant.vendorIntro, page: () => const VendorNavigationScreen()),
 
 
-  GetPage(name: RoutesConstant.emailVerification, page: () => EmailVerificationScreen()),
-  GetPage(name: RoutesConstant.otpVerification, page: () => OTPVerificationScreen()),
-  GetPage(name: RoutesConstant.forgotPassword, page: () => ForgotPasswordScreen()),
-  GetPage(name: RoutesConstant.resetPassword, page: () => PasswordResetScreen()),
+  GetPage(name: RoutesConstant.emailVerification, page: () => const EmailVerificationScreen()),
+  GetPage(name: RoutesConstant.otpVerification, page: () => const OTPVerificationScreen()),
+  GetPage(name: RoutesConstant.forgotPassword, page: () => const ForgotPasswordScreen()),
+  GetPage(name: RoutesConstant.resetPassword, page: () => const PasswordResetScreen()),
 ]; 
