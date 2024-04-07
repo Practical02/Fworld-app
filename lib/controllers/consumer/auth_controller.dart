@@ -19,7 +19,7 @@ class AuthController extends GetxController {
   @override
   void onClose() {}
 
-  registerVendor(String name, String email, String password) async {
+  registerConsumer(String name, String email, String password) async {
     try {
       isLoading(false);
       auth_model = await AuthService.register(name, email, password);
@@ -27,6 +27,25 @@ class AuthController extends GetxController {
       if(auth_model != null) {
         storage.write(key: "FWORLD_JWT_TOKEN", value: auth_model?.data);
         Get.toNamed(RoutesConstant.emailVerification, arguments: email);
+      } else {
+        Get.snackbar("", "Something went wrong");
+      }
+    } on Exception catch (e) {
+      print('Error while getting data is $e');
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  loginConsumer(String email, String password) async {
+    try {
+      isLoading(false);
+      auth_model = await AuthService.login(email, password);
+      final storage = new FlutterSecureStorage();
+      if(auth_model != null) {
+        storage.write(key: "FWORLD_JWT_TOKEN", value: auth_model?.data);
+        print(auth_model?.data);
+        Get.toNamed(RoutesConstant.userNavigation);
       } else {
         Get.snackbar("", "Something went wrong");
       }

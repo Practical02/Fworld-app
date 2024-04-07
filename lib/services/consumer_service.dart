@@ -10,6 +10,7 @@ class ConsumerService {
   static Future<List<PostModel>?> FetchPosts(int page) async {
     final storage = const FlutterSecureStorage();
     final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    print(jwt);
     final url = "${ApiRoutes.consumerFeedRoute}$page";
     print(url);
     var resp = await http.get(
@@ -22,6 +23,7 @@ class ConsumerService {
 
     if(resp.statusCode == 200) {
       var posts = feedModelFromJson(resp.body).data;
+      print(posts);
       return posts;
     } else {
       print(resp.body);

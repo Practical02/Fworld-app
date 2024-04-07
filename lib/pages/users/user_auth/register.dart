@@ -310,7 +310,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              authController.registerVendor(
+                              authController.registerConsumer(
                                 nameController.text, 
                                 emailController.text, 
                                 passwordController.text

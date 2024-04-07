@@ -23,4 +23,24 @@ class AuthService {
       return null;
     }
   }
+
+    static Future<AuthModel?> login(String email, String password) async {
+    print(email.isEmpty);
+    print(password.isEmpty);
+    var resp = await http.post(
+      Uri.parse(ApiRoutes.consumerLoginRoute),
+      headers: Map.from(<String,String>{'content-type': 'application/json'}),
+      body: json.encode(<String,String>{"email": email, "password": password})
+    );
+
+    if(resp.statusCode == 200) {
+      var auth = authModelFromJson(resp.body);
+      print(auth.data);
+      return auth;
+    } else {
+      print("No data");
+      return null;
+    }
+  }
 }
+

@@ -15,7 +15,7 @@ import 'package:function_world_app/pages/vendors/vendors_intro.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
-List<GetPage> getPages = [
+final getPages = [
 
   GetPage(name: RoutesConstant.userIntro, page: () => const UserIntro()),
   GetPage(name: RoutesConstant.userRegister, page: () => const UserRegistration()),

@@ -106,7 +106,7 @@ class _UserIntroState extends State<UserIntro> {
                         const MaterialStatePropertyAll(AppColors.primaryColor),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(UserLogin.routeName);
+                    Get.toNamed(RoutesConstant.userLogin);
                   },
                   child: const Text(
                     "Login",

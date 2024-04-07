@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/consumer/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
 import 'package:function_world_app/pages/users/user_auth/forgot_password.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
+import 'package:get/get.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({super.key});
@@ -16,6 +18,7 @@ class UserLogin extends StatefulWidget {
 }
 
 class _UserLoginState extends State<UserLogin> {
+  AuthController authController = Get.put(AuthController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -249,10 +252,7 @@ class _UserLoginState extends State<UserLogin> {
                           alignment: Alignment.topRight,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                ForgotPasswordScreen.routeName,
-                              );
+                              authController.loginConsumer(emailController.text, passwordController.text);
                             },
                             child: Text(
                               'Forgot Password ? ',
@@ -270,8 +270,7 @@ class _UserLoginState extends State<UserLogin> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  NavigationScreen.routeName, (route) => false);
+                              authController.loginConsumer(emailController.text, passwordController.text);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
