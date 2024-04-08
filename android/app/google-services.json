@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "959197077184",
+    "firebase_url": "https://function-world-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "function-world-chat",
+    "storage_bucket": "function-world-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959197077184:android:620bec1848686f47ad1725",
+        "android_client_info": {
+          "package_name": "com.example.function_world_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdAcR_pT0nCQjS1M89jBOMMGsPL-nrWNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,16 +3,11 @@ import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/services/chat_service.dart';
 import 'package:function_world_app/models/message_model.dart';
 
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserMessagesScreen extends StatefulWidget {
-  final String userEmail;
-  final String receiverEmail;
-
   const UserMessagesScreen({
     super.key,
-    required this.userEmail,
-    required this.receiverEmail,
   });
 
   @override
@@ -21,22 +16,55 @@ class UserMessagesScreen extends StatefulWidget {
 
 class _UserMessagesScreenState extends State<UserMessagesScreen> {
   String username = '';
-  String receiverEmail = '';
+  String receiver = '';
   bool isLoading = true;
-  List<Message> messages = []; // List to store messages
+  List<Message> messages = [];
   late ChatService _chatService;
 
-  late TextEditingController
-      _messageController; // Controller for the message input
+  late TextEditingController _messageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _messageController = TextEditingController();
+    _chatService = ChatService();
+    fetchUserDetails();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _messageController.dispose();
+  }
+
+  Future<void> fetchUserDetails() async {
+    final Map<String, dynamic> arguments = Get.arguments;
+    final String userEmail = arguments['userEmail'];
+    final String receiverEmail = arguments['receiverEmail'];
+
+    setState(() {
+      // Update username and receiverEmail from SharedPreferences
+      username = userEmail;
+      receiver = receiverEmail;
+
+      // Initialize ChatService
+      _chatService = ChatService();
+
+      // Fetch messages between users
+      fetchMessages();
+
+      fetchRecieved();
+    });
+  }
 
   // Function to fetch messages between users
   Future<void> fetchMessages() async {
     try {
       List<Message> sentMessages =
-          await _chatService.getMessagesBetweenUsers(username, receiverEmail);
+          await _chatService.getMessagesBetweenUsers(username, receiver);
 
       List<Message> recievedMessages =
-          await _chatService.getMessagesBetweenUsers(receiverEmail, username);
+          await _chatService.getMessagesBetweenUsers(receiver, username);
 
       setState(() {
         messages = sentMessages + recievedMessages;
@@ -55,13 +83,31 @@ class _UserMessagesScreenState extends State<UserMessagesScreen> {
     }
   }
 
+  Future<void> fetchRecieved() async {
+    try {
+      List<Message> allMessages =
+          await _chatService.getMessagesBetweenUsers(receiver, username);
+
+      setState(() {
+        messages = messages + allMessages;
+        isLoading = false; // Set loading to false once messages are fetched
+      });
+    } catch (error) {
+      // Handle error
+      print('Error fetching messages: $error');
+    }
+  }
+
   // Function to send a message
   Future<void> sendMessage(String message) async {
     try {
       // Send the message using ChatService
+      print(username);
+      print(receiver);
+
       await _chatService.sendMessage(Message(
         senderEmail: username,
-        receiverEmail: receiverEmail,
+        receiverEmail: receiver,
         message: message,
         timestamp: DateTime.now(),
       ));
@@ -95,8 +141,7 @@ class _UserMessagesScreenState extends State<UserMessagesScreen> {
                     child: Column(
                       children: messages.map((message) {
                         // Check if the message is sent by the current user
-                        bool isSentMessage =
-                            message.senderEmail == widget.userEmail;
+                        bool isSentMessage = message.senderEmail == username;
                         return ListTile(
                           title: Align(
                             alignment: isSentMessage
@@ -108,7 +153,7 @@ class _UserMessagesScreenState extends State<UserMessagesScreen> {
                               decoration: BoxDecoration(
                                 color: isSentMessage
                                     ? AppColors.primaryColor
-                                    : AppColors.buttonColor,
+                                    : AppColors.primaryColor,
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: Text(

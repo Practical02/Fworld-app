@@ -5,6 +5,7 @@ class RoutesConstant {
   static const String userChat = "/user/chat";
   static const String userNavigation = "/user/navigation";
   static const String userVendorProfile = "/user/vendor";
+  static const String userMessagesScreen = "/user/messages";
 
   static const String vendorIntro = "/vendor/register";
   static const String vendorRegister = "/vendor/register";
@@ -16,5 +17,4 @@ class RoutesConstant {
   static const String otpVerification = "/common/otp_verify";
   static const String forgotPassword = "/common/forgot_password";
   static const String resetPassword = "/common/reset_password";
-
 }
