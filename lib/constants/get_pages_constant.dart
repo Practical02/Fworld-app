@@ -9,6 +9,7 @@ import 'package:function_world_app/pages/users/user_auth/otp_verification.dart';
 import 'package:function_world_app/pages/users/user_auth/register.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:function_world_app/pages/users/vendor_profile.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
@@ -22,6 +23,7 @@ final getPages = [
   GetPage(name: RoutesConstant.userLogin, page: () => const UserLogin()),
   GetPage(name: RoutesConstant.userNavigation, page: () => const NavigationScreen()),
   GetPage(name: RoutesConstant.userChat, page: () => const ChatUSersScreen()),
+  GetPage(name: RoutesConstant.userVendorProfile, page: () => const UserVendorProfile()),
 
 
   GetPage(name: RoutesConstant.vendorIntro, page: () => const VendorsIntro()),

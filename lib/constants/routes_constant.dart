@@ -4,6 +4,7 @@ class RoutesConstant {
   static const String userLogin = "/user/login";
   static const String userChat = "/user/chat";
   static const String userNavigation = "/user/navigation";
+  static const String userVendorProfile = "/user/vendor";
 
   static const String vendorIntro = "/vendor/register";
   static const String vendorRegister = "/vendor/register";

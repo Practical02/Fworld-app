@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/controllers/consumer/favourites_controller.dart';
 import 'package:function_world_app/widgets/fav_tiles.dart';
 import 'package:function_world_app/widgets/home_tile.dart';
@@ -17,28 +18,11 @@ class FavouritesScreen extends StatefulWidget {
 }
 
 class _FavouritesScreenState extends State<FavouritesScreen> {
-  late Future<List<Album>> pics;
   FavouritesController favouritesController = Get.put(FavouritesController());
-
-  Future<List<Album>> fetchAlbum() async {
-    final response = await http.get(
-      Uri.parse('https://picsum.photos/v2/list?page=2&limit=5'),
-    );
-
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonResponse = jsonDecode(response.body);
-      List<Album> albums =
-          jsonResponse.map((item) => Album.fromJson(item)).toList();
-      return albums;
-    } else {
-      throw Exception('Failed to load album');
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    pics = fetchAlbum();
   }
 
   @override
@@ -83,7 +67,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                       padding: const EdgeInsets.all(2.0),
                       child: GestureDetector(
                         onTap: () {
-                          // Handle tap
+                          Get.toNamed(RoutesConstant.userVendorProfile, arguments: {'vendorID': favouritesController.postList[index].vendorId});
                         },
                         child: HomeTile(
                           imageUrl: favouritesController.postList[index].url,

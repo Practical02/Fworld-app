@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/controllers/consumer/feed_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/vendor_profile.dart';
@@ -40,22 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(2.0),
                     child: GestureDetector(
                       onTap: () {
-                        // Handle tap
+                        Get.toNamed(RoutesConstant.userVendorProfile, arguments: {"vendorID":feedController.postList[index].vendorId});
                       },
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const UserVendorProfile(),
-                            ),
-                          );
-                        },
-                        child: HomeTile(
-                          imageUrl: feedController.postList[index].url,
-                          title: feedController.postList[index].name,
-                          subTitle: feedController.postList[index].service,
-                        ),
+                      child: HomeTile(
+                        imageUrl: feedController.postList[index].url,
+                        title: feedController.postList[index].name,
+                        subTitle: feedController.postList[index].service,
                       ),
                     ),
                   );
