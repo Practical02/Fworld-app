@@ -47,6 +47,7 @@ dependencies:
   firebase_core: ^2.28.0
   get_storage: ^2.1.1
   firebase_database: ^10.5.0
+  flutter_stripe: ^10.1.1
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +81,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/.env
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

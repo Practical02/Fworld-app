@@ -156,7 +156,7 @@ class _UserIntroState extends State<UserIntro> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, VendorsIntro.routeName);
+                    Get.toNamed(RoutesConstant.vendorIntro);
                   },
                   child: const Text(
                     "Create a Vendor's Account",
