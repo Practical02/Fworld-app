@@ -1,14 +1,11 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/controllers/consumer/favourites_controller.dart';
-import 'package:function_world_app/widgets/fav_tiles.dart';
 import 'package:function_world_app/widgets/home_tile.dart';
 import 'package:get/get.dart';
 
-import 'package:http/http.dart' as http;
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});

@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
+import 'package:get/get.dart';
 
 class VendorLogin extends StatefulWidget {
   const VendorLogin({super.key});
@@ -315,10 +317,7 @@ class _VendorLoginState extends State<VendorLogin> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  VendorNavigationScreen.routeName,
-                                  (route) => false);
+                              Get.toNamed(RoutesConstant.vendorNavigation);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -360,8 +359,7 @@ class _VendorLoginState extends State<VendorLogin> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, VendorRegistration.routeName);
+                            Get.toNamed(RoutesConstant.vendorRegister);
                           },
                           child: Text(
                             "Register Now",

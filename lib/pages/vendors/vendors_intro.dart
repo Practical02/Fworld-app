@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:get/get.dart';
 
 class VendorsIntro extends StatefulWidget {
   static String routeName = "/vendor/intro";
@@ -103,7 +105,7 @@ class _VendorsIntroState extends State<VendorsIntro> {
                         const MaterialStatePropertyAll(AppColors.primaryColor),
                   ),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(VendorLogin.routeName);
+                    Get.toNamed(RoutesConstant.vendorLogin);
                   },
                   child: const Text(
                     "Login",
@@ -137,7 +139,8 @@ class _VendorsIntroState extends State<VendorsIntro> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, VendorRegistration.routeName);
+                    print("pressed");
+                    Get.toNamed(RoutesConstant.vendorRegister);
                   },
                   child: const Text(
                     "Sign Up",
@@ -153,8 +156,7 @@ class _VendorsIntroState extends State<VendorsIntro> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, UserIntro.routeName, (route) => false);
+                    Get.toNamed(RoutesConstant.vendorRegister);
                   },
                   child: const Text(
                     "Login/Create User Account",

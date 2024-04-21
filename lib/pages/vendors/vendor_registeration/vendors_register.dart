@@ -9,8 +9,6 @@ class VendorRegistration extends StatefulWidget {
     super.key,
   });
 
-  static String routeName = "/vendor/registration";
-
   @override
   State<VendorRegistration> createState() => VendorrRegistrationState();
 }

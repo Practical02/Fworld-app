@@ -37,7 +37,7 @@ final getPages = [
       page: () => const VendorRegistration()),
   GetPage(name: RoutesConstant.vendorLogin, page: () => const VendorLogin()),
   GetPage(
-      name: RoutesConstant.vendorIntro,
+      name: RoutesConstant.vendorNavigation,
       page: () => const VendorNavigationScreen()),
   GetPage(
       name: RoutesConstant.emailVerification,
