@@ -139,7 +139,6 @@ class _VendorsIntroState extends State<VendorsIntro> {
                     ),
                   ),
                   onPressed: () {
-                    print("pressed");
                     Get.toNamed(RoutesConstant.vendorRegister);
                   },
                   child: const Text(
@@ -156,7 +155,7 @@ class _VendorsIntroState extends State<VendorsIntro> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.toNamed(RoutesConstant.vendorRegister);
+                    Get.toNamed(RoutesConstant.userIntro);
                   },
                   child: const Text(
                     "Login/Create User Account",
