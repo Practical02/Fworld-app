@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/vendors/vendor_profile.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_portfolio.dart';
-import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_portfolio.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_login.dart';
 
 class VendorsWelcome extends StatefulWidget {
   static String routeName = "/vendor/welcome";

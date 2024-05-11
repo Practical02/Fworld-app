@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/users/profile_screen.dart';
+import 'package:function_world_app/pages/vendors/vendor_profile_screen.dart';
+import 'package:get/get.dart';
 
 class VendorNavigationScreen extends StatefulWidget {
   static String routeName = "/vendor/nav";
@@ -26,15 +28,6 @@ class VendorNavigationScreenState extends State<VendorNavigationScreen> {
               image: AssetImage('assets/icons/Location.png'),
               height: 24,
             ),
-            Text(
-              "LOC",
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontFamily: 'Gilroy',
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-              ),
-            ),
           ],
         ),
         title: Image(
@@ -48,7 +41,7 @@ class VendorNavigationScreenState extends State<VendorNavigationScreen> {
                   MaterialStateProperty.all<Color>(Colors.transparent),
             ),
             onPressed: () {
-              // Navigate to chat screen
+              Get.toNamed(RoutesConstant.vendorChat);
             },
             child: Image(
               image: AssetImage('assets/icons/Chat.png'),
@@ -57,7 +50,7 @@ class VendorNavigationScreenState extends State<VendorNavigationScreen> {
           )
         ],
       ),
-      body: ProfileScreen(),
+      body: VendorProfileScreen(),
     );
   }
 }

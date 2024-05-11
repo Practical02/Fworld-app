@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/controllers/consumer/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_auth/login.dart';
@@ -310,6 +311,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
+                              print("Hello");
                               authController.registerConsumer(
                                 nameController.text, 
                                 emailController.text, 
@@ -356,13 +358,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              UserLogin.routeName,
-                              ModalRoute.withName(
-                                UserIntro.routeName,
-                              ),
-                            );
+                            Get.offNamed(RoutesConstant.userLogin);
                           },
                           child: Text(
                             "Login",

@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class PaymentService extends ChangeNotifier {
-  Future<void> makePayment() async {
+  static Future<bool> makePayment() async {
     try {
       //STEP 1: Create Payment Intent
       var paymentIntent = await createPaymentIntent('10000', 'INR');
@@ -22,13 +23,15 @@ class PaymentService extends ChangeNotifier {
           .then((value) {});
 
       //STEP 3: Display Payment sheet
-      displayPaymentSheet();
+      var result = displayPaymentSheet();
+      return result;
     } catch (err) {
-      print(err);
+      Get.snackbar("Payment Provider", "Payment not successful");
+      return false;
     }
   }
 
-  createPaymentIntent(String amount, String currency) async {
+  static createPaymentIntent(String amount, String currency) async {
     try {
       Map<String, dynamic> body = {
         'amount': amount,
@@ -49,13 +52,13 @@ class PaymentService extends ChangeNotifier {
     }
   }
 
-  displayPaymentSheet() async {
+  static Future<bool> displayPaymentSheet() async {
     try {
-      await Stripe.instance.presentPaymentSheet().then((value) {
-        print("Payment Successfully");
-      });
+      await Stripe.instance.presentPaymentSheet().then((value) {});
+      return true;
     } catch (e) {
-      print('$e');
+      Get.snackbar("Payment Provider", "Payment not successful");
+      return false;
     }
   }
 }

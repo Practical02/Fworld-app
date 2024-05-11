@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+option go_package = "./consumer";
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message AuthResponse {
+    string token = 1;
+}
+
+message VerifyEmailRequest {
+    string token = 1;
+    int32 otp = 2;
+}
+
+message VerifyEmailResponse {
+    string message = 1;
+}
+
+message ProfileRequest {
+    string token = 1;
+}
+
+message ProfileResponse {
+    string ID = 1;
+    string email = 2;
+    string name = 3;
+    string phone = 4;
+    string imageUrl = 5;
+}
+
+message UpdateProfileRequest {
+    string token = 1;
+    string name = 2;
+    string phone = 3;
+}
+
+message UpdateProfileResponse {
+    string message = 1;
+}
+
+message UploadRequest {
+    string token = 1;
+    string filename = 2;
+    bytes data = 3;
+  }
+  
+message UploadResponse {
+    string url = 1;
+}
+
+message FeedRequest {
+    string token = 1;
+}
+
+message FeedResponse {
+    repeated Post post = 1;
+}
+
+message FLFRequest {
+    string token = 1;
+    string vendorID = 2;
+}
+
+message FLFResponse {
+    string message = 1;
+}
+
+message SearchRequest {
+    string query = 1;
+}
+
+message SearchResponse {
+    repeated Vendor vendor = 1;
+}
+
+message VendorRequest {
+    string token = 1;
+    string vendorID = 2;
+}
+
+message VendorResponse {
+    Vendor vendor = 1;
+}
+
+message Vendor {
+    string ID = 1;
+    string name = 2;
+    string description = 3;
+    repeated string services = 4;
+    repeated string locations = 5;
+    int64 likes = 6;
+    int64 followers = 7;
+    bool isLiked = 8;
+    bool isFollowed = 9;
+    bool isFavourited = 10;
+    repeated Post posts = 11;
+}
+
+message Post{
+    string ID = 1;
+    string ImageURL = 2;
+    string Service = 3;
+    string Location = 4;
+    string VendorID = 5;
+    string VendorName = 6;
+}
+
+service Consumer {
+
+    rpc Login(LoginRequest) returns (AuthResponse);
+    rpc Register(RegisterRequest) returns (AuthResponse);
+    rpc VerifyEmail(VerifyEmailRequest) returns (VerifyEmailResponse);
+    rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+    rpc UpdateProfilePic(UploadRequest) returns(UploadResponse);
+    rpc Feed(FeedRequest) returns (FeedResponse);
+    rpc Favourites(FeedRequest) returns (FeedResponse);
+    rpc Profile(ProfileRequest) returns (ProfileResponse);
+    rpc Vendor(VendorRequest) returns(VendorResponse);
+
+    rpc Like(FLFRequest) returns (FLFResponse);
+    rpc Follow(FLFRequest) returns (FLFResponse);
+    rpc Favourite(FLFRequest) returns (FLFResponse);
+
+}

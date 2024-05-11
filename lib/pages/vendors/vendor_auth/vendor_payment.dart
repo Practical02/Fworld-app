@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/consumer/payment_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/services/payment_service.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_welcome.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_welcome.dart';
+import 'package:get/get.dart';
 
 class VendorPaymentGatewayScreen extends StatefulWidget {
   const VendorPaymentGatewayScreen({super.key});
@@ -13,16 +15,9 @@ class VendorPaymentGatewayScreen extends StatefulWidget {
       _VendorPaymentGatewayScreenState();
 }
 
-class _VendorPaymentGatewayScreenState
-    extends State<VendorPaymentGatewayScreen> {
-  late PaymentService _paymentService;
+class _VendorPaymentGatewayScreenState extends State<VendorPaymentGatewayScreen> {
+  PaymentController paymentController = Get.put(PaymentController());
   var err;
-
-  @override
-  void initState() {
-    super.initState();
-    _paymentService = PaymentService();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +87,7 @@ class _VendorPaymentGatewayScreenState
                 ),
               ),
               onPressed: () {
-                err = _paymentService.makePayment();
-
-                if (err == null) {
-                  Navigator.pushNamed(context, VendorsWelcome.routeName);
-                }
+                paymentController.makePayment();
               },
               child: Text(
                 "Pay Now",

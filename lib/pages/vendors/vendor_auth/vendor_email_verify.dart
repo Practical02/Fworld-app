@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:function_world_app/controllers/consumer/verify_email.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/users/navigation.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_payment.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class UserEmailVerificationScreen extends StatefulWidget {
-  const UserEmailVerificationScreen({super.key});
+class VendorEmailVerificationScreen extends StatefulWidget {
+  const VendorEmailVerificationScreen({super.key});
   @override
-  _UserEmailVerificationScreenState createState() =>
-      _UserEmailVerificationScreenState();
+  _VendorEmailVerificationScreenState createState() =>
+      _VendorEmailVerificationScreenState();
 }
 
-class _UserEmailVerificationScreenState extends State<UserEmailVerificationScreen> {
+class _VendorEmailVerificationScreenState extends State<VendorEmailVerificationScreen> {
   final VerifyEmailController verifyEmailController =
       Get.put(VerifyEmailController());
   TextEditingController otpController = TextEditingController();
@@ -117,7 +116,7 @@ class _UserEmailVerificationScreenState extends State<UserEmailVerificationScree
                       child: ElevatedButton(
                         onPressed: () {
                           verifyEmailController
-                              .verifyConsumerOTP(int.parse(otpController.text));
+                              .verifyVendorOTP(int.parse(otpController.text));
                         },
                         style: ButtonStyle(
                           backgroundColor:

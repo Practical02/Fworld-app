@@ -10,7 +10,7 @@ class ConsumerService {
 
   static Future<List<PostModel>?> FetchPosts(int page) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     print(jwt);
     final url = "${ApiRoutes.consumerFeedRoute}$page";
     print(url);
@@ -34,7 +34,7 @@ class ConsumerService {
 
   static Future<List<PostModel>?> fetchFavourites() async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     final url = ApiRoutes.consumerFavouriteVendorRoute;
     var resp = await http.get(
       Uri.parse(url),
@@ -54,7 +54,7 @@ class ConsumerService {
 
     static Future<VendorModel?> fetchVendor(String vendorID) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     final url = "${ApiRoutes.consumerVendorRoute}$vendorID";
     var resp = await http.get(
       Uri.parse(url),
@@ -77,7 +77,7 @@ class ConsumerService {
 
   static Future<bool> followVendor(String vendorID) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     final url = ApiRoutes.consumerFollowVendorRoute;
     var resp = await http.post(
       Uri.parse(url),
@@ -98,7 +98,7 @@ class ConsumerService {
 
     static Future<bool> likeVendor(String vendorID) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     final url = ApiRoutes.consumerLikeVendorRoute;
     var resp = await http.post(
       Uri.parse(url),
@@ -119,7 +119,7 @@ class ConsumerService {
 
     static Future<bool> favouriteVendor(String vendorID) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     final url = ApiRoutes.consumerFavouriteVendorRoute;
     var resp = await http.post(
       Uri.parse(url),
@@ -140,7 +140,7 @@ class ConsumerService {
 
   static Future<bool> verifyOTP(int otp) async {
     final storage = const FlutterSecureStorage();
-    final jwt = await storage.read(key: 'FWORLD_JWT_TOKEN');
+    final jwt = await storage.read(key: 'FWORLD_CONSUMER_JWT_TOKEN');
     var resp = await http.post(
       Uri.parse(ApiRoutes.consumerVerifyMailRoute),
       headers: Map.from(<String,String>{

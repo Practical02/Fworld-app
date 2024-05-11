@@ -2,6 +2,7 @@ import 'dart:convert';
 
 AuthModel authModelFromJson(String str) => AuthModel.fromJson(json.decode(str));
 
+
 String authModelToJson(AuthModel data) => json.encode(data.toJson());
 
 class AuthModel {

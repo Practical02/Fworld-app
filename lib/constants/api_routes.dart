@@ -10,4 +10,8 @@ abstract class ApiRoutes {
   static const consumerFollowVendorRoute = "$baseURl/consumer/follow";
   static const consumerLikeVendorRoute = "$baseURl/consumer/like";
   static const consumerFavouriteVendorRoute = "$baseURl/consumer/favourite";
+
+  static const vendorRegisterRoute = "$baseURl/register/vendor"; 
+  static const vendorVerifyMailRoute = "$baseURl/vendor/verifyEmail";
+
 }

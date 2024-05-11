@@ -1,30 +1,30 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
-import 'package:function_world_app/constants/routes_constant.dart';
+import 'package:function_world_app/controllers/consumer/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/vendors/vendor_nav.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
+import 'package:function_world_app/pages/users/user_auth/login.dart';
+import 'package:function_world_app/pages/users/user_auth/verification.dart';
+import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:get/get.dart';
 
-class VendorLogin extends StatefulWidget {
-  const VendorLogin({super.key});
-
-  static String routeName = "/vendor/login";
+class VendorRegistration extends StatefulWidget {
+  const VendorRegistration({
+    super.key,
+  });
 
   @override
-  State<VendorLogin> createState() => _VendorLoginState();
+  State<VendorRegistration> createState() => VendorrRegistrationState();
 }
 
-class _VendorLoginState extends State<VendorLogin> {
+class VendorrRegistrationState extends State<VendorRegistration> {
+  AuthController authController = Get.put(AuthController());
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController idController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
 
+  String nameError = '';
   String emailError = '';
-  String idError = '';
   String passwordError = '';
 
   void _togglePasswordVisibility() {
@@ -35,14 +35,20 @@ class _VendorLoginState extends State<VendorLogin> {
 
   void validateFields() {
     setState(() {
+      nameError = '';
       emailError = '';
-      idError = '';
       passwordError = '';
     });
 
+    final String name = nameController.text.trim();
     final String email = emailController.text.trim();
-    final String id = idController.text.trim();
     final String password = passwordController.text;
+
+    if (name.isEmpty) {
+      setState(() {
+        nameError = 'Name is required';
+      });
+    }
 
     if (email.isEmpty) {
       setState(() {
@@ -50,11 +56,6 @@ class _VendorLoginState extends State<VendorLogin> {
       });
     }
 
-    if (id.isEmpty) {
-      setState(() {
-        emailError = 'FWorld ID is required';
-      });
-    }
     if (password.isEmpty) {
       setState(
         () {
@@ -94,7 +95,7 @@ class _VendorLoginState extends State<VendorLogin> {
               alignment: Alignment.topLeft,
               child: Container(
                 padding: EdgeInsets.only(left: 24),
-                height: MediaQuery.sizeOf(context).height * 0.25,
+                height: MediaQuery.of(context).size.height * 0.25,
                 child: Stack(
                   children: [
                     Column(
@@ -102,7 +103,7 @@ class _VendorLoginState extends State<VendorLogin> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Enter the realm",
+                          "Create an account",
                           style: TextStyle(
                             fontSize: 38,
                             fontWeight: FontWeight.bold,
@@ -110,7 +111,7 @@ class _VendorLoginState extends State<VendorLogin> {
                           ),
                         ),
                         Text(
-                          "of immaculate occasions.",
+                          "embrace the future of event planning.",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -135,8 +136,8 @@ class _VendorLoginState extends State<VendorLogin> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              width: MediaQuery.sizeOf(context).width,
-              height: MediaQuery.sizeOf(context).height * 0.75,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.75,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
@@ -159,7 +160,7 @@ class _VendorLoginState extends State<VendorLogin> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'FWorld ID',
+                                'Name',
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.bold,
@@ -177,11 +178,11 @@ class _VendorLoginState extends State<VendorLogin> {
                                     5.0), // Rounded corners if desired
                               ),
                               child: TextField(
-                                controller: idController,
+                                controller: nameController,
                                 decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
-                                  hintText: 'Enter your FWorld ID',
+                                  hintText: 'Enter your name',
                                   hintStyle: TextStyle(color: Colors.black38),
                                   contentPadding: EdgeInsets.all(8.0),
                                 ),
@@ -206,18 +207,15 @@ class _VendorLoginState extends State<VendorLogin> {
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Colors.black38.withOpacity(
-                                      0.5), // Light gray border color
-                                  width: 1.0, //   1px border width
+                                  color: Colors.black38.withOpacity(0.5),
+                                  width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(
-                                    5.0), // Rounded corners if desired
+                                borderRadius: BorderRadius.circular(5.0),
                               ),
                               child: TextField(
                                 controller: emailController,
                                 decoration: InputDecoration(
-                                  border: InputBorder
-                                      .none, // No border for the TextField
+                                  border: InputBorder.none,
                                   hintText: 'Enter your email',
                                   hintStyle: TextStyle(color: Colors.black38),
                                   contentPadding: EdgeInsets.all(8.0),
@@ -276,39 +274,32 @@ class _VendorLoginState extends State<VendorLogin> {
                           child: Row(
                             children: [
                               Text(
+                                (nameError),
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              Text(
+                                nameError.isNotEmpty &
+                                        emailError.isNotEmpty &
+                                        passwordError.isNotEmpty
+                                    ? ", "
+                                    : "",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              Text(
                                 (emailError),
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
                                 emailError.isNotEmpty & passwordError.isNotEmpty
-                                    ? " and "
+                                    ? ", "
                                     : "",
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
-                                passwordError,
+                                (passwordError),
                                 style: TextStyle(color: Colors.red),
                               )
                             ],
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: TextButton(
-                            onPressed: () {
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   VendorForgotPasswordScreen.routeName,
-                              // );
-                            },
-                            child: Text(
-                              'Forgot Password ? ',
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontFamily: 'Gilroy',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ),
                         ),
                         SizedBox(height: 30),
@@ -317,7 +308,7 @@ class _VendorLoginState extends State<VendorLogin> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Get.toNamed(RoutesConstant.vendorNavigation);
+                              // authController.registerVendor(nameController.text, emailController.text, passwordController.text);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -334,7 +325,7 @@ class _VendorLoginState extends State<VendorLogin> {
                                 vertical: 12.0,
                               ),
                               child: const Text(
-                                'Login',
+                                'Create your Account',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -350,7 +341,7 @@ class _VendorLoginState extends State<VendorLogin> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don’t have an account?",
+                          "Already have an account?",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black45,
@@ -359,10 +350,16 @@ class _VendorLoginState extends State<VendorLogin> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.toNamed(RoutesConstant.vendorRegister);
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              UserLogin.routeName,
+                              ModalRoute.withName(
+                                UserIntro.routeName,
+                              ),
+                            );
                           },
                           child: Text(
-                            "Register Now",
+                            "Login",
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.primaryColor,
@@ -384,9 +381,9 @@ class _VendorLoginState extends State<VendorLogin> {
 
   @override
   void dispose() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    idController.dispose();
     super.dispose();
   }
 }

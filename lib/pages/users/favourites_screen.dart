@@ -58,18 +58,18 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
               } else {
                 return MasonryGridView.count(
                   crossAxisCount: 2,
-                  itemCount: favouritesController.postList.length,
+                  itemCount: favouritesController.feed.value.post.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(RoutesConstant.userVendorProfile, arguments: {'vendorID': favouritesController.postList[index].vendorId});
+                          Get.toNamed(RoutesConstant.userVendorProfile, arguments: {'vendorID': favouritesController.feed.value.post[index].vendorID});
                         },
                         child: HomeTile(
-                          imageUrl: favouritesController.postList[index].url,
-                          title: favouritesController.postList[index].name,
-                          subTitle: favouritesController.postList[index].service,
+                          imageUrl: favouritesController.feed.value.post[index].imageURL,
+                          title: favouritesController.feed.value.post[index].vendorName,
+                          subTitle: favouritesController.feed.value.post[index].service,
                         ),
                       ),
                     );

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
-import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_register.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_login.dart';
 import 'package:get/get.dart';
 
 class VendorsIntro extends StatefulWidget {

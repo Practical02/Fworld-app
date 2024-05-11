@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/controllers/consumer/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
@@ -312,8 +313,7 @@ class _UserLoginState extends State<UserLogin> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, UserRegistration.routeName);
+                            Get.offNamed(RoutesConstant.userRegister);
                           },
                           child: Text(
                             "Register Now",

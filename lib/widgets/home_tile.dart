@@ -52,7 +52,7 @@ class _HomeTileState extends State<HomeTile> {
                 width: double.maxFinite,
                 height: 40,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0)),
                   color: AppColors.buttonColor,
                 ),
                 child: Padding(

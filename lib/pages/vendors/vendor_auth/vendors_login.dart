@@ -1,26 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/users/user_auth/login.dart';
-import 'package:function_world_app/pages/users/user_auth/verification.dart';
-import 'package:function_world_app/pages/users/user_intro.dart';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-class VendorRegistration extends StatefulWidget {
-  const VendorRegistration({
-    super.key,
-  });
+import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
+import 'package:function_world_app/controllers/consumer/auth_controller.dart';
+import 'package:function_world_app/core/app_colors.dart';
+import 'package:function_world_app/pages/vendors/vendor_nav.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_register.dart';
+import 'package:get/get.dart';
+
+class VendorLogin extends StatefulWidget {
+  const VendorLogin({super.key});
+
+  static String routeName = "/vendor/login";
 
   @override
-  State<VendorRegistration> createState() => VendorrRegistrationState();
+  State<VendorLogin> createState() => _VendorLoginState();
 }
 
-class VendorrRegistrationState extends State<VendorRegistration> {
-  final TextEditingController nameController = TextEditingController();
+class _VendorLoginState extends State<VendorLogin> {
+  AuthController authController = Get.put(AuthController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
 
-  String nameError = '';
   String emailError = '';
   String passwordError = '';
 
@@ -32,27 +35,18 @@ class VendorrRegistrationState extends State<VendorRegistration> {
 
   void validateFields() {
     setState(() {
-      nameError = '';
       emailError = '';
       passwordError = '';
     });
 
-    final String name = nameController.text.trim();
     final String email = emailController.text.trim();
     final String password = passwordController.text;
-
-    if (name.isEmpty) {
-      setState(() {
-        nameError = 'Name is required';
-      });
-    }
 
     if (email.isEmpty) {
       setState(() {
         emailError = 'Email is required';
       });
     }
-
     if (password.isEmpty) {
       setState(
         () {
@@ -92,7 +86,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
               alignment: Alignment.topLeft,
               child: Container(
                 padding: EdgeInsets.only(left: 24),
-                height: MediaQuery.of(context).size.height * 0.25,
+                height: MediaQuery.sizeOf(context).height * 0.25,
                 child: Stack(
                   children: [
                     Column(
@@ -100,7 +94,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Create an account",
+                          "Enter the realm",
                           style: TextStyle(
                             fontSize: 38,
                             fontWeight: FontWeight.bold,
@@ -108,7 +102,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                           ),
                         ),
                         Text(
-                          "embrace the future of event planning.",
+                          "of immaculate occasions.",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -133,8 +127,8 @@ class VendorrRegistrationState extends State<VendorRegistration> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.75,
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height * 0.75,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(40),
@@ -148,16 +142,14 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                   children: [
                     Column(
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
+                        SizedBox(height: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Name',
+                                'Email',
                                 style: TextStyle(
                                   color: Colors.black38,
                                   fontWeight: FontWeight.bold,
@@ -175,44 +167,10 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                                     5.0), // Rounded corners if desired
                               ),
                               child: TextField(
-                                controller: nameController,
+                                controller: emailController,
                                 decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
-                                  hintText: 'Enter your name',
-                                  hintStyle: TextStyle(color: Colors.black38),
-                                  contentPadding: EdgeInsets.all(8.0),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Email',
-                                style: TextStyle(
-                                  color: Colors.black38,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.black38.withOpacity(0.5),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: TextField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
                                   hintText: 'Enter your email',
                                   hintStyle: TextStyle(color: Colors.black38),
                                   contentPadding: EdgeInsets.all(8.0),
@@ -271,32 +229,39 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                           child: Row(
                             children: [
                               Text(
-                                (nameError),
-                                style: TextStyle(color: Colors.red),
-                              ),
-                              Text(
-                                nameError.isNotEmpty &
-                                        emailError.isNotEmpty &
-                                        passwordError.isNotEmpty
-                                    ? ", "
-                                    : "",
-                                style: TextStyle(color: Colors.red),
-                              ),
-                              Text(
                                 (emailError),
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
                                 emailError.isNotEmpty & passwordError.isNotEmpty
-                                    ? ", "
+                                    ? " and "
                                     : "",
                                 style: TextStyle(color: Colors.red),
                               ),
                               Text(
-                                (passwordError),
+                                passwordError,
                                 style: TextStyle(color: Colors.red),
                               )
                             ],
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: TextButton(
+                            onPressed: () {
+                              // Navigator.pushNamed(
+                              //   context,
+                              //   VendorForgotPasswordScreen.routeName,
+                              // );
+                            },
+                            child: Text(
+                              'Forgot Password ? ',
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontFamily: 'Gilroy',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 30),
@@ -305,8 +270,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              // Navigator.pushNamed(
-                              //     context, EmailVerificationScreen.routeName);
+                              Get.toNamed(RoutesConstant.vendorNavigation);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
@@ -323,7 +287,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                                 vertical: 12.0,
                               ),
                               child: const Text(
-                                'Create your Account',
+                                'Login',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -339,7 +303,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Already have an account?",
+                          "Don’t have an account?",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black45,
@@ -348,16 +312,10 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              UserLogin.routeName,
-                              ModalRoute.withName(
-                                UserIntro.routeName,
-                              ),
-                            );
+                            Get.toNamed(RoutesConstant.vendorRegister);
                           },
                           child: Text(
-                            "Login",
+                            "Register Now",
                             style: TextStyle(
                               fontSize: 16,
                               color: AppColors.primaryColor,
@@ -379,7 +337,6 @@ class VendorrRegistrationState extends State<VendorRegistration> {
 
   @override
   void dispose() {
-    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();

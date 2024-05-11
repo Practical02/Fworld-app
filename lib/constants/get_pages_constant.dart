@@ -9,11 +9,14 @@ import 'package:function_world_app/pages/users/user_auth/register.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
 import 'package:function_world_app/pages/users/user_chat.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:function_world_app/pages/users/user_profile_edit_screen.dart';
 import 'package:function_world_app/pages/users/vendor_profile.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_email_verify.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_payment.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendors_register.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
-import 'package:function_world_app/pages/vendors/vendors_login.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendors_login.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 final getPages = [
@@ -31,6 +34,9 @@ final getPages = [
   GetPage(
       name: RoutesConstant.userMessagesScreen,
       page: () => const UserMessagesScreen()),
+  GetPage(
+      name: RoutesConstant.userProfileEditScreen,
+      page: () => const UserProfileEdit()),
   GetPage(name: RoutesConstant.vendorIntro, page: () => const VendorsIntro()),
   GetPage(
       name: RoutesConstant.vendorRegister,
@@ -40,15 +46,18 @@ final getPages = [
       name: RoutesConstant.vendorNavigation,
       page: () => const VendorNavigationScreen()),
   GetPage(
-      name: RoutesConstant.emailVerification,
-      page: () => const EmailVerificationScreen()),
+      name: RoutesConstant.userEmailVerification,
+      page: () => const UserEmailVerificationScreen()),
   GetPage(
-      name: RoutesConstant.otpVerification,
-      page: () => const OTPVerificationScreen()),
+      name: RoutesConstant.vendorEmailVerification,
+      page: () => const VendorEmailVerificationScreen()),
   GetPage(
       name: RoutesConstant.forgotPassword,
       page: () => const ForgotPasswordScreen()),
   GetPage(
       name: RoutesConstant.resetPassword,
       page: () => const PasswordResetScreen()),
+  GetPage(
+    name: RoutesConstant.payment, 
+    page: () => const VendorPaymentGatewayScreen())
 ];

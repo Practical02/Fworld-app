@@ -49,7 +49,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(10)),
                   child: CachedNetworkImage(
-                    imageUrl: vendorController.vendor.value.data.posts[0].url,
+                    imageUrl: vendorController.vendor.value.vendor.posts[0].imageURL,
                     placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                     imageBuilder: (context, imageProvider) {
@@ -78,21 +78,21 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                vendorController.vendor.value.data.name,
+                                vendorController.vendor.value.vendor.name,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "${vendorController.vendor.value.data.followers} followers",
+                                "${vendorController.followers.value} followers",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
                                     fontWeight: FontWeight.normal),
                               ),
                               Text(
-                                "${vendorController.vendor.value.data.likes} likes",
+                                "${vendorController.likes.value} likes",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -119,7 +119,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                                 ),
                               ),
                               Text(
-                                "${vendorController.vendor.value.data.likes} likes",
+                                "${vendorController.likes.value} likes",
                                 style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontSize: 9,
@@ -177,7 +177,7 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                     String? currentUserEmail = box.read('email');
                     print(currentUserEmail);
 
-                    if (currentUserEmail != null) {
+                    if (currentUserEmail != null && currentUserEmail != "") {
                       // Check if the vendor exists in the Firestore database
                       ChatUser? vendor =
                           await ChatUser.getVendorIfExists(vendorID);
@@ -195,10 +195,9 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                         vendor = ChatUser(
                           id: vendorID,
                           photoUrl: '', // You can add appropriate values here
-                          displayName: vendorController.vendor.value.data
+                          displayName: vendorController.vendor.value.vendor
                               .name, // You can add appropriate values here
-                          phoneNumber: vendorController.vendor.value.data
-                              .phone, // You can add appropriate values here
+                          phoneNumber: "", // You can add appropriate values here
                           aboutMe: '', // You can add appropriate values here
                           participants: [
                             currentUserEmail
@@ -267,11 +266,11 @@ class _UserVendorProfileState extends State<UserVendorProfile> {
                         crossAxisSpacing: 14,
                       ),
                       itemCount:
-                          vendorController.vendor.value.data.posts.length,
+                          vendorController.vendor.value.vendor.posts.length,
                       itemBuilder: (context, index) {
                         return GalleryTile(
                           imageUrl: vendorController
-                              .vendor.value.data.posts[index].url,
+                              .vendor.value.vendor.posts[index].imageURL,
                         );
                       },
                     )),

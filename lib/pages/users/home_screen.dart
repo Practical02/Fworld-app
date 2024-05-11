@@ -35,18 +35,18 @@ class _HomeScreenState extends State<HomeScreen> {
           } else {
             return MasonryGridView.count(
                 crossAxisCount: 2,
-                itemCount: feedController.postList.length,
+                itemCount: feedController.feed.value.post.length,
                 itemBuilder: (context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: GestureDetector(
                       onTap: () {
-                        Get.toNamed(RoutesConstant.userVendorProfile, arguments: {"vendorID":feedController.postList[index].vendorId});
+                        Get.toNamed(RoutesConstant.userVendorProfile, arguments: {"vendorID":feedController.feed.value.post[index].vendorID});
                       },
                       child: HomeTile(
-                        imageUrl: feedController.postList[index].url,
-                        title: feedController.postList[index].name,
-                        subTitle: feedController.postList[index].service,
+                        imageUrl: feedController.feed.value.post[index].imageURL,
+                        title: feedController.feed.value.post[index].vendorName,
+                        subTitle: feedController.feed.value.post[index].service,
                       ),
                     ),
                   );

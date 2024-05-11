@@ -6,7 +6,7 @@ import 'package:function_world_app/constants/get_pages_constant.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/firebase_options.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_payment.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_payment.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: VendorPaymentGatewayScreen(),
+      home: UserIntro(),
       getPages: getPages,
     );
   }

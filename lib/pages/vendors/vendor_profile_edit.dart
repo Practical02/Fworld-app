@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:function_world_app/pages/vendors/vendor_registeration/vendor_gallery.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_gallery.dart';
 
 class VendorProfileEdit extends StatefulWidget {
   const VendorProfileEdit({super.key});

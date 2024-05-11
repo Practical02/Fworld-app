@@ -1,10 +1,13 @@
-import 'package:function_world_app/models/post_list_model.dart';
-import 'package:function_world_app/services/consumer_service.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
+import 'package:function_world_app/services/consumer_service_grpc.dart';
+import 'package:function_world_app/src/generated/consumer.pb.dart';
 import 'package:get/get.dart';
 
 class FavouritesController extends GetxController {
-  var postList = List<PostModel>.empty().obs;
+  var feed = FeedResponse().obs;
   var isLoading = false.obs;
+  final storage = FlutterSecureStorage();
 
   @override
   void onInit() {
@@ -13,18 +16,20 @@ class FavouritesController extends GetxController {
   }
 
   Future<void> getFavourites() async {
-    try {
-      isLoading(true); // Set loading to true before fetching data
-      var posts = await ConsumerService.fetchFavourites();
-      if (posts != null) {
-        postList(posts);
+      isLoading(true);
+      final token = await storage.read(key: "FWORLD_CONSUMER_TOKEN"); 
+      if(token != null) {
+        var feedResp = await ConsumerService.getFavourites(token);
+        print(feedResp);
+        if(feedResp != null) {
+          feed.value = feedResp;
+          isLoading(false);
+        }
       } else {
+        isLoading(false);
         Get.snackbar("", "Something went wrong");
+        Get.toNamed(RoutesConstant.userLogin);
       }
-    } catch (e) {
-      print('Error while getting data is $e');
-    } finally {
-      isLoading(false); // Set loading to false after fetching data
-    }
   }
+
 }
