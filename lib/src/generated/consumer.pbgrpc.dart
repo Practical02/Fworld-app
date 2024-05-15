@@ -57,6 +57,10 @@ class ConsumerClient extends $grpc.Client {
       '/Consumer/Vendor',
       ($0.VendorRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.VendorResponse.fromBuffer(value));
+  static final _$search = $grpc.ClientMethod<$0.SearchRequest, $0.SearchResponse>(
+      '/Consumer/Search',
+      ($0.SearchRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.SearchResponse.fromBuffer(value));
   static final _$like = $grpc.ClientMethod<$0.FLFRequest, $0.FLFResponse>(
       '/Consumer/Like',
       ($0.FLFRequest value) => value.writeToBuffer(),
@@ -110,6 +114,10 @@ class ConsumerClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.VendorResponse> vendor($0.VendorRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$vendor, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SearchResponse> search($0.SearchRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$search, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.FLFResponse> like($0.FLFRequest request, {$grpc.CallOptions? options}) {
@@ -193,6 +201,13 @@ abstract class ConsumerServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.VendorRequest.fromBuffer(value),
         ($0.VendorResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SearchRequest, $0.SearchResponse>(
+        'Search',
+        search_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.SearchRequest.fromBuffer(value),
+        ($0.SearchResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.FLFRequest, $0.FLFResponse>(
         'Like',
         like_Pre,
@@ -252,6 +267,10 @@ abstract class ConsumerServiceBase extends $grpc.Service {
     return vendor(call, await request);
   }
 
+  $async.Future<$0.SearchResponse> search_Pre($grpc.ServiceCall call, $async.Future<$0.SearchRequest> request) async {
+    return search(call, await request);
+  }
+
   $async.Future<$0.FLFResponse> like_Pre($grpc.ServiceCall call, $async.Future<$0.FLFRequest> request) async {
     return like(call, await request);
   }
@@ -273,6 +292,7 @@ abstract class ConsumerServiceBase extends $grpc.Service {
   $async.Future<$0.FeedResponse> favourites($grpc.ServiceCall call, $0.FeedRequest request);
   $async.Future<$0.ProfileResponse> profile($grpc.ServiceCall call, $0.ProfileRequest request);
   $async.Future<$0.VendorResponse> vendor($grpc.ServiceCall call, $0.VendorRequest request);
+  $async.Future<$0.SearchResponse> search($grpc.ServiceCall call, $0.SearchRequest request);
   $async.Future<$0.FLFResponse> like($grpc.ServiceCall call, $0.FLFRequest request);
   $async.Future<$0.FLFResponse> follow($grpc.ServiceCall call, $0.FLFRequest request);
   $async.Future<$0.FLFResponse> favourite($grpc.ServiceCall call, $0.FLFRequest request);

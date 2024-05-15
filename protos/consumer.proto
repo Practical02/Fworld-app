@@ -80,7 +80,7 @@ message SearchRequest {
 }
 
 message SearchResponse {
-    repeated Vendor vendor = 1;
+    repeated VendorMinimal vendor = 1;
 }
 
 message VendorRequest {
@@ -89,10 +89,10 @@ message VendorRequest {
 }
 
 message VendorResponse {
-    Vendor vendor = 1;
+    VendorDescribed vendor = 1;
 }
 
-message Vendor {
+message VendorDescribed {
     string ID = 1;
     string name = 2;
     string description = 3;
@@ -104,6 +104,11 @@ message Vendor {
     bool isFollowed = 9;
     bool isFavourited = 10;
     repeated Post posts = 11;
+}
+
+message VendorMinimal {
+    string ID = 1;
+    string name = 2;
 }
 
 message Post{
@@ -126,6 +131,7 @@ service Consumer {
     rpc Favourites(FeedRequest) returns (FeedResponse);
     rpc Profile(ProfileRequest) returns (ProfileResponse);
     rpc Vendor(VendorRequest) returns(VendorResponse);
+    rpc Search(SearchRequest) returns(SearchResponse);
 
     rpc Like(FLFRequest) returns (FLFResponse);
     rpc Follow(FLFRequest) returns (FLFResponse);

@@ -29,7 +29,7 @@ class PaymentController extends GetxController {
       isLoading(false);
       var result = await PaymentService.makePayment();
       if(result) {
-        Get.offAllNamed(RoutesConstant.vendorNavigation);
+        Get.offAllNamed(RoutesConstant.vendorPortfolio);
       } else {
         Get.snackbar("Payment Provider", "Payment not successful");
       }

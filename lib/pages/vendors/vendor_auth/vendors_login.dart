@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:function_world_app/constants/routes_constant.dart';
-import 'package:function_world_app/controllers/consumer/auth_controller.dart';
+import 'package:function_world_app/controllers/vendor/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_auth/vendors_register.dart';
@@ -270,7 +270,7 @@ class _VendorLoginState extends State<VendorLogin> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              Get.toNamed(RoutesConstant.vendorNavigation);
+                              authController.login(emailController.text, passwordController.text);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

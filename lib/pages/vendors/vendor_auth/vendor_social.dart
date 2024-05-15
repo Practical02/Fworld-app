@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/vendor/portfolio_controller.dart';
+import 'package:get/get.dart';
 
 class VendorSocial extends StatefulWidget {
   const VendorSocial({super.key});
@@ -12,6 +16,7 @@ class VendorSocial extends StatefulWidget {
 }
 
 class _VendorSocialState extends State<VendorSocial> {
+  PortfolioController portfolioController = Get.put(PortfolioController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +109,7 @@ class _VendorSocialState extends State<VendorSocial> {
                         ),
                         CircleAvatar(
                           radius: 60,
-                          child: Image.asset('assets/images/card.png'),
+                          child: portfolioController.imageInitialized.isFalse ? Image.asset('assets/images/card.png') : Image.file(File(portfolioController.image.value.path)),
                         ),
                         TextButton(
                           onPressed: () {},
@@ -137,7 +142,8 @@ class _VendorSocialState extends State<VendorSocial> {
                                 borderRadius: BorderRadius.circular(
                                     5.0), // Rounded corners if desired
                               ),
-                              child: const TextField(
+                              child: TextField(
+                                controller: portfolioController.facebookController,
                                 decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
@@ -169,7 +175,8 @@ class _VendorSocialState extends State<VendorSocial> {
                                 borderRadius: BorderRadius.circular(
                                     5.0), // Rounded corners if desired
                               ),
-                              child: const TextField(
+                              child: TextField(
+                                controller: portfolioController.instagramController,
                                 decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
@@ -179,72 +186,9 @@ class _VendorSocialState extends State<VendorSocial> {
                             ),
                           ],
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Link to Twitter',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: const TextField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(8.0),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Link to LinkedIn',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                              child: const TextField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.all(8.0),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
                         ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/vendor/login', (route) => false);
+                              portfolioController.updateSocials();
                             },
                             child: Text("Next >")),
                         const SizedBox(

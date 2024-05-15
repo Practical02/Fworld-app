@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:function_world_app/controllers/consumer/auth_controller.dart';
+import 'package:function_world_app/controllers/vendor/auth_controller.dart';
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/user_auth/login.dart';
 import 'package:function_world_app/pages/users/user_auth/verification.dart';
@@ -308,7 +308,7 @@ class VendorrRegistrationState extends State<VendorRegistration> {
                           child: ElevatedButton(
                             onPressed: () {
                               validateFields();
-                              // authController.registerVendor(nameController.text, emailController.text, passwordController.text);
+                              authController.register(nameController.text, emailController.text, passwordController.text);
                             },
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

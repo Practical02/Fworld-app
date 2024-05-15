@@ -184,6 +184,33 @@ class ConsumerService {
     }
   }
 
+  static FutureOr<SearchResponse?> search(String query) async {
+    final channel = ClientChannel(
+      'roundhouse.proxy.rlwy.net',
+      port: 53090,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+    final stub = ConsumerClient(channel);
+    try {
+      var resp = await stub.search(SearchRequest(query: query));
+      return resp;
+    } on GrpcError catch(e) {
+      switch(e.code) {
+
+        case 13:
+          Get.snackbar("Server Error", "Something went wrong");
+          break;
+
+        default:
+          Get.snackbar("Error", e.toString());
+      } 
+      return null;
+    } catch(e) {
+        Get.snackbar("App Error", "Something went wrong");
+        return null;
+    }
+  }
+
   static FutureOr<FeedResponse?> getFeed(String token) async {
     final channel = ClientChannel(
       'roundhouse.proxy.rlwy.net',

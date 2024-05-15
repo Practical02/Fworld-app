@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:function_world_app/controllers/consumer/verify_email.dart';
+import 'package:function_world_app/controllers/vendor/verify_email.dart';
 import 'package:function_world_app/core/app_colors.dart';
-import 'package:function_world_app/pages/vendors/vendor_auth/vendor_payment.dart';
 import 'package:get/get.dart';
 
 class VendorEmailVerificationScreen extends StatefulWidget {
@@ -116,7 +115,7 @@ class _VendorEmailVerificationScreenState extends State<VendorEmailVerificationS
                       child: ElevatedButton(
                         onPressed: () {
                           verifyEmailController
-                              .verifyVendorOTP(int.parse(otpController.text));
+                              .verifyConsumerOTP(int.parse(otpController.text));
                         },
                         style: ButtonStyle(
                           backgroundColor:

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:function_world_app/widgets/category_tile.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:function_world_app/widgets/category_tile.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -16,7 +16,7 @@ final List<String> imgList = [
 ];
 
 class VendorsScreen extends StatefulWidget {
-  const VendorsScreen({super.key});
+  const VendorsScreen({Key? key}) : super(key: key);
 
   @override
   State<VendorsScreen> createState() => _VendorsScreenState();
@@ -24,6 +24,11 @@ class VendorsScreen extends StatefulWidget {
 
 class _VendorsScreenState extends State<VendorsScreen> {
   late Future<List<Album>> pics;
+  TextEditingController _searchController = TextEditingController();
+  List<String> suggestions = [
+    "RM Weddings",
+    "RK Weddings"
+  ];
 
   Future<List<Album>> fetchAlbum() async {
     final response = await http.get(
@@ -44,6 +49,28 @@ class _VendorsScreenState extends State<VendorsScreen> {
   void initState() {
     super.initState();
     pics = fetchAlbum();
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    String query = _searchController.text;
+    if (query.isNotEmpty) {
+      fetchSuggestions(query);
+    } else {
+      setState(() {
+        suggestions.clear();
+      });
+    }
+  }
+
+  Future<void> fetchSuggestions(String query) async {
+    final response = ["asda", "sdfsdf", "rtyrt"];
   }
 
   @override
@@ -70,23 +97,39 @@ class _VendorsScreenState extends State<VendorsScreen> {
                     )
                     .toList(),
               ),
-              const Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: EdgeInsets.all(25.0),
-                  child: SearchBar(
-                    backgroundColor: MaterialStatePropertyAll(
-                      Color.fromARGB(100, 255, 255, 255),
-                    ),
-                    padding: MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(
-                        horizontal: 16.0,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        border: InputBorder.none,
+                        icon: Icon(Icons.search),
                       ),
                     ),
-                    leading: Icon(Icons.search),
                   ),
                 ),
               ),
+              if (suggestions.isNotEmpty)
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: suggestions.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(suggestions[index]),
+                        onTap: () {},
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
           Container(

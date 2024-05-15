@@ -12,7 +12,10 @@ import 'package:function_world_app/pages/users/user_intro.dart';
 import 'package:function_world_app/pages/users/user_profile_edit_screen.dart';
 import 'package:function_world_app/pages/users/vendor_profile.dart';
 import 'package:function_world_app/pages/vendors/vendor_auth/vendor_email_verify.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_gallery.dart';
 import 'package:function_world_app/pages/vendors/vendor_auth/vendor_payment.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_portfolio.dart';
+import 'package:function_world_app/pages/vendors/vendor_auth/vendor_social.dart';
 import 'package:function_world_app/pages/vendors/vendor_nav.dart';
 import 'package:function_world_app/pages/vendors/vendor_auth/vendors_register.dart';
 import 'package:function_world_app/pages/vendors/vendors_intro.dart';
@@ -59,5 +62,8 @@ final getPages = [
       page: () => const PasswordResetScreen()),
   GetPage(
     name: RoutesConstant.payment, 
-    page: () => const VendorPaymentGatewayScreen())
+    page: () => const VendorPaymentGatewayScreen()),
+  GetPage(name: RoutesConstant.vendorPortfolio, page: () => const VendorPortfolio()),
+  GetPage(name: RoutesConstant.vendorSocials, page: () => const VendorSocial()),
+  GetPage(name: RoutesConstant.vendorGallery, page: () => const VendorGallery())
 ];

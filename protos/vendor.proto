@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option go_package = "./vendor";
+
+message VendorLoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message VendorRegisterRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message VendorAuthResponse {
+    string token = 1;
+}
+
+message VendorVerifyEmailRequest {
+    string token = 1;
+    int32 otp = 2;
+}
+
+message VendorVerifyEmailResponse {
+    string message = 1;
+}
+
+message UpdateDetailsRequest {
+    string token = 1;
+    string name = 2;
+    string description = 3;
+    string services = 4;
+    string phone = 5;
+}
+
+message UpdateSocialsRequest {
+    string token = 1;
+    bytes image = 2;
+    string Filename = 3;
+    string instagram = 4;
+    string facebook = 5;
+}
+
+message UpdateDetailsResponse {
+    string message = 1;
+}
+
+service Vendor {
+    rpc Login(VendorLoginRequest) returns (VendorAuthResponse);
+    rpc Register(VendorRegisterRequest) returns (VendorAuthResponse);
+    rpc VerifyEmail(VendorVerifyEmailRequest) returns (VendorVerifyEmailResponse);
+    
+    rpc UpdateDetails(UpdateDetailsRequest) returns (UpdateDetailsResponse);
+    rpc UpdateSocials(UpdateSocialsRequest) returns (UpdateDetailsResponse);
+}

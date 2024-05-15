@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/controllers/vendor/portfolio_controller.dart';
 import 'package:function_world_app/pages/vendors/vendor_auth/vendor_gallery.dart';
+import 'package:get/get.dart';
 
 class VendorPortfolio extends StatefulWidget {
   const VendorPortfolio({super.key});
@@ -13,11 +15,7 @@ class VendorPortfolio extends StatefulWidget {
 }
 
 class _VendorPortfolioState extends State<VendorPortfolio> {
-  TextEditingController vendorNameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController eventTypeController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  PortfolioController portfolioController = Get.put(PortfolioController());
   bool isLoading = false;
   Map<String, dynamic> vendorInfo = {};
 
@@ -119,32 +117,28 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                             padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Vendor Name', // Label text
-                              style: TextStyle(
-                                color: Colors.grey, // Label text color
-                              ),
                             ),
                           ),
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.grey[400],
                               border: Border.all(
-                                color: Colors.grey.withOpacity(
-                                    0.5), // Light gray border color
+                                color: Colors.white, // Light gray border color
                                 width: 1.0, // 1px border width
                               ),
                               borderRadius: BorderRadius.circular(
                                   5.0), // Rounded corners if desired
                             ),
                             child: TextField(
-                              controller: vendorNameController,
-                              enabled: false,
+                              controller: portfolioController.nameController,
+                              enabled: true,
                               decoration: InputDecoration(
                                   border: InputBorder
                                       .none, // No border for the TextField
                                   hintText: 'Enter your Vendor Name',
                                   hintStyle: TextStyle(color: Colors.black),
                                   contentPadding: EdgeInsets.all(8.0),
-                                  fillColor: Colors.grey),
+                                  fillColor: Colors.white),
                             ),
                           ),
                         ],
@@ -172,7 +166,8 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                               borderRadius: BorderRadius.circular(
                                   5.0), // Rounded corners if desired
                             ),
-                            child: const TextField(
+                            child: TextField(
+                              controller: portfolioController.descriptionController,
                               decoration: InputDecoration(
                                 border: InputBorder
                                     .none, // No border for the TextField
@@ -188,7 +183,7 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                           const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                              'Type of Event',
+                              'Services',
                               style: TextStyle(
                                 color: Colors.grey,
                               ),
@@ -202,7 +197,8 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                               ),
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            child: const TextField(
+                            child: TextField(
+                              controller: portfolioController.servicesController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.all(8.0),
@@ -235,43 +231,13 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                               ),
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            child: const TextField(
+                            child: TextField(
+                              controller: portfolioController.phoneController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.all(8.0),
                               ),
                             ),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child: TextField(
-                                  controller: emailController,
-                                  enabled: false,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(8.0),
-                                  ),
-                                ),
-                              ),
-                            ],
                           ),
                         ],
                       ),
@@ -285,8 +251,7 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
                           children: [
                             ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(VendorGallery.routeName);
+                                portfolioController.updateDetails();
                               },
                               label: Text("Next"),
                               icon: Icon(Icons.arrow_forward_ios),
@@ -314,14 +279,4 @@ class _VendorPortfolioState extends State<VendorPortfolio> {
     );
   }
 
-  @override
-  void dispose() {
-    vendorNameController.dispose();
-    descriptionController.dispose();
-    eventTypeController.dispose();
-    phoneController.dispose();
-    emailController.dispose();
-
-    super.dispose();
-  }
 }

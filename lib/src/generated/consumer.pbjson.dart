@@ -230,13 +230,14 @@ final $typed_data.Uint8List searchRequestDescriptor = $convert.base64Decode(
 const SearchResponse$json = {
   '1': 'SearchResponse',
   '2': [
-    {'1': 'vendor', '3': 1, '4': 3, '5': 11, '6': '.Vendor', '10': 'vendor'},
+    {'1': 'vendor', '3': 1, '4': 3, '5': 11, '6': '.VendorMinimal', '10': 'vendor'},
   ],
 };
 
 /// Descriptor for `SearchResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List searchResponseDescriptor = $convert.base64Decode(
-    'Cg5TZWFyY2hSZXNwb25zZRIfCgZ2ZW5kb3IYASADKAsyBy5WZW5kb3JSBnZlbmRvcg==');
+    'Cg5TZWFyY2hSZXNwb25zZRImCgZ2ZW5kb3IYASADKAsyDi5WZW5kb3JNaW5pbWFsUgZ2ZW5kb3'
+    'I=');
 
 @$core.Deprecated('Use vendorRequestDescriptor instead')
 const VendorRequest$json = {
@@ -256,17 +257,18 @@ final $typed_data.Uint8List vendorRequestDescriptor = $convert.base64Decode(
 const VendorResponse$json = {
   '1': 'VendorResponse',
   '2': [
-    {'1': 'vendor', '3': 1, '4': 1, '5': 11, '6': '.Vendor', '10': 'vendor'},
+    {'1': 'vendor', '3': 1, '4': 1, '5': 11, '6': '.VendorDescribed', '10': 'vendor'},
   ],
 };
 
 /// Descriptor for `VendorResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List vendorResponseDescriptor = $convert.base64Decode(
-    'Cg5WZW5kb3JSZXNwb25zZRIfCgZ2ZW5kb3IYASABKAsyBy5WZW5kb3JSBnZlbmRvcg==');
+    'Cg5WZW5kb3JSZXNwb25zZRIoCgZ2ZW5kb3IYASABKAsyEC5WZW5kb3JEZXNjcmliZWRSBnZlbm'
+    'Rvcg==');
 
-@$core.Deprecated('Use vendorDescriptor instead')
-const Vendor$json = {
-  '1': 'Vendor',
+@$core.Deprecated('Use vendorDescribedDescriptor instead')
+const VendorDescribed$json = {
+  '1': 'VendorDescribed',
   '2': [
     {'1': 'ID', '3': 1, '4': 1, '5': 9, '10': 'ID'},
     {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
@@ -282,14 +284,27 @@ const Vendor$json = {
   ],
 };
 
-/// Descriptor for `Vendor`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List vendorDescriptor = $convert.base64Decode(
-    'CgZWZW5kb3ISDgoCSUQYASABKAlSAklEEhIKBG5hbWUYAiABKAlSBG5hbWUSIAoLZGVzY3JpcH'
-    'Rpb24YAyABKAlSC2Rlc2NyaXB0aW9uEhoKCHNlcnZpY2VzGAQgAygJUghzZXJ2aWNlcxIcCgls'
-    'b2NhdGlvbnMYBSADKAlSCWxvY2F0aW9ucxIUCgVsaWtlcxgGIAEoA1IFbGlrZXMSHAoJZm9sbG'
-    '93ZXJzGAcgASgDUglmb2xsb3dlcnMSGAoHaXNMaWtlZBgIIAEoCFIHaXNMaWtlZBIeCgppc0Zv'
-    'bGxvd2VkGAkgASgIUgppc0ZvbGxvd2VkEiIKDGlzRmF2b3VyaXRlZBgKIAEoCFIMaXNGYXZvdX'
-    'JpdGVkEhsKBXBvc3RzGAsgAygLMgUuUG9zdFIFcG9zdHM=');
+/// Descriptor for `VendorDescribed`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List vendorDescribedDescriptor = $convert.base64Decode(
+    'Cg9WZW5kb3JEZXNjcmliZWQSDgoCSUQYASABKAlSAklEEhIKBG5hbWUYAiABKAlSBG5hbWUSIA'
+    'oLZGVzY3JpcHRpb24YAyABKAlSC2Rlc2NyaXB0aW9uEhoKCHNlcnZpY2VzGAQgAygJUghzZXJ2'
+    'aWNlcxIcCglsb2NhdGlvbnMYBSADKAlSCWxvY2F0aW9ucxIUCgVsaWtlcxgGIAEoA1IFbGlrZX'
+    'MSHAoJZm9sbG93ZXJzGAcgASgDUglmb2xsb3dlcnMSGAoHaXNMaWtlZBgIIAEoCFIHaXNMaWtl'
+    'ZBIeCgppc0ZvbGxvd2VkGAkgASgIUgppc0ZvbGxvd2VkEiIKDGlzRmF2b3VyaXRlZBgKIAEoCF'
+    'IMaXNGYXZvdXJpdGVkEhsKBXBvc3RzGAsgAygLMgUuUG9zdFIFcG9zdHM=');
+
+@$core.Deprecated('Use vendorMinimalDescriptor instead')
+const VendorMinimal$json = {
+  '1': 'VendorMinimal',
+  '2': [
+    {'1': 'ID', '3': 1, '4': 1, '5': 9, '10': 'ID'},
+    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
+  ],
+};
+
+/// Descriptor for `VendorMinimal`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List vendorMinimalDescriptor = $convert.base64Decode(
+    'Cg1WZW5kb3JNaW5pbWFsEg4KAklEGAEgASgJUgJJRBISCgRuYW1lGAIgASgJUgRuYW1l');
 
 @$core.Deprecated('Use postDescriptor instead')
 const Post$json = {

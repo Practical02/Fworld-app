@@ -992,7 +992,7 @@ class SearchRequest extends $pb.GeneratedMessage {
 
 class SearchResponse extends $pb.GeneratedMessage {
   factory SearchResponse({
-    $core.Iterable<Vendor>? vendor,
+    $core.Iterable<VendorMinimal>? vendor,
   }) {
     final $result = create();
     if (vendor != null) {
@@ -1005,7 +1005,7 @@ class SearchResponse extends $pb.GeneratedMessage {
   factory SearchResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SearchResponse', createEmptyInstance: create)
-    ..pc<Vendor>(1, _omitFieldNames ? '' : 'vendor', $pb.PbFieldType.PM, subBuilder: Vendor.create)
+    ..pc<VendorMinimal>(1, _omitFieldNames ? '' : 'vendor', $pb.PbFieldType.PM, subBuilder: VendorMinimal.create)
     ..hasRequiredFields = false
   ;
 
@@ -1031,7 +1031,7 @@ class SearchResponse extends $pb.GeneratedMessage {
   static SearchResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<Vendor> get vendor => $_getList(0);
+  $core.List<VendorMinimal> get vendor => $_getList(0);
 }
 
 class VendorRequest extends $pb.GeneratedMessage {
@@ -1100,7 +1100,7 @@ class VendorRequest extends $pb.GeneratedMessage {
 
 class VendorResponse extends $pb.GeneratedMessage {
   factory VendorResponse({
-    Vendor? vendor,
+    VendorDescribed? vendor,
   }) {
     final $result = create();
     if (vendor != null) {
@@ -1113,7 +1113,7 @@ class VendorResponse extends $pb.GeneratedMessage {
   factory VendorResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VendorResponse', createEmptyInstance: create)
-    ..aOM<Vendor>(1, _omitFieldNames ? '' : 'vendor', subBuilder: Vendor.create)
+    ..aOM<VendorDescribed>(1, _omitFieldNames ? '' : 'vendor', subBuilder: VendorDescribed.create)
     ..hasRequiredFields = false
   ;
 
@@ -1139,19 +1139,19 @@ class VendorResponse extends $pb.GeneratedMessage {
   static VendorResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  Vendor get vendor => $_getN(0);
+  VendorDescribed get vendor => $_getN(0);
   @$pb.TagNumber(1)
-  set vendor(Vendor v) { setField(1, v); }
+  set vendor(VendorDescribed v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasVendor() => $_has(0);
   @$pb.TagNumber(1)
   void clearVendor() => clearField(1);
   @$pb.TagNumber(1)
-  Vendor ensureVendor() => $_ensure(0);
+  VendorDescribed ensureVendor() => $_ensure(0);
 }
 
-class Vendor extends $pb.GeneratedMessage {
-  factory Vendor({
+class VendorDescribed extends $pb.GeneratedMessage {
+  factory VendorDescribed({
     $core.String? iD,
     $core.String? name,
     $core.String? description,
@@ -1200,11 +1200,11 @@ class Vendor extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  Vendor._() : super();
-  factory Vendor.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Vendor.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  VendorDescribed._() : super();
+  factory VendorDescribed.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VendorDescribed.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Vendor', createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VendorDescribed', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'ID', protoName: 'ID')
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..aOS(3, _omitFieldNames ? '' : 'description')
@@ -1223,22 +1223,22 @@ class Vendor extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  Vendor clone() => Vendor()..mergeFromMessage(this);
+  VendorDescribed clone() => VendorDescribed()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Vendor copyWith(void Function(Vendor) updates) => super.copyWith((message) => updates(message as Vendor)) as Vendor;
+  VendorDescribed copyWith(void Function(VendorDescribed) updates) => super.copyWith((message) => updates(message as VendorDescribed)) as VendorDescribed;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static Vendor create() => Vendor._();
-  Vendor createEmptyInstance() => create();
-  static $pb.PbList<Vendor> createRepeated() => $pb.PbList<Vendor>();
+  static VendorDescribed create() => VendorDescribed._();
+  VendorDescribed createEmptyInstance() => create();
+  static $pb.PbList<VendorDescribed> createRepeated() => $pb.PbList<VendorDescribed>();
   @$core.pragma('dart2js:noInline')
-  static Vendor getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Vendor>(create);
-  static Vendor? _defaultInstance;
+  static VendorDescribed getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VendorDescribed>(create);
+  static VendorDescribed? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get iD => $_getSZ(0);
@@ -1320,6 +1320,70 @@ class Vendor extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(11)
   $core.List<Post> get posts => $_getList(10);
+}
+
+class VendorMinimal extends $pb.GeneratedMessage {
+  factory VendorMinimal({
+    $core.String? iD,
+    $core.String? name,
+  }) {
+    final $result = create();
+    if (iD != null) {
+      $result.iD = iD;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    return $result;
+  }
+  VendorMinimal._() : super();
+  factory VendorMinimal.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VendorMinimal.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VendorMinimal', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'ID', protoName: 'ID')
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VendorMinimal clone() => VendorMinimal()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VendorMinimal copyWith(void Function(VendorMinimal) updates) => super.copyWith((message) => updates(message as VendorMinimal)) as VendorMinimal;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VendorMinimal create() => VendorMinimal._();
+  VendorMinimal createEmptyInstance() => create();
+  static $pb.PbList<VendorMinimal> createRepeated() => $pb.PbList<VendorMinimal>();
+  @$core.pragma('dart2js:noInline')
+  static VendorMinimal getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VendorMinimal>(create);
+  static VendorMinimal? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get iD => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set iD($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasID() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearID() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
 }
 
 class Post extends $pb.GeneratedMessage {
