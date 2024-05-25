@@ -12,13 +12,15 @@ class VendorSearchController extends GetxController {
   var responses = SearchResponse().obs;
   var isLoading = false.obs;
 
-
-  Future<void> search() async {
+  Future<void> search(String query) async {
+    try {
       isLoading(true);
-        var searchResp = await ConsumerService.search(searchController.text);
-        if(searchResp != null) {
-          responses.value = searchResp;
-          isLoading(false);
-        }
+      var searchResp = await ConsumerService.search(query);
+      if (searchResp != null) {
+        responses.value = searchResp;
       }
+    } finally {
+      isLoading(false);
+    }
+  }
 }

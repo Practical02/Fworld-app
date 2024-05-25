@@ -1,10 +1,13 @@
 import 'dart:convert';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
+import 'package:function_world_app/controllers/consumer/search_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:function_world_app/widgets/category_tile.dart';
+import 'package:function_world_app/services/consumer_service_grpc.dart';
+import 'package:function_world_app/src/generated/consumer.pb.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -13,6 +16,29 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
   'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+];
+
+final List<Map<String, String>> imageCategories = [
+  {
+    "imageURL":
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAnfIGCiFvcTpMlGbsMW-hjyUe4qXc10NRZjLKOAt2Rg&s",
+    "category_name": "Catering"
+  },
+  {
+    "imageURL":
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzzzZFG74VblpD8MIwC3LFq6S72JVKtRfGHQ&s",
+    "category_name": "Event Management"
+  },
+  {
+    "imageURL":
+        "https://www.callmepetit.com/wp-content/uploads/2021/06/couple-wedding-photos.jpg",
+    "category_name": "Photographers"
+  },
+  {
+    "imageURL":
+        "https://5.imimg.com/data5/OI/SY/YY/SELLER-3947012/complete-interior-technical-services-for-auditoriums-500x500.jpg",
+    "category_name": "Auditoriums"
+  },
 ];
 
 class VendorsScreen extends StatefulWidget {
@@ -24,11 +50,9 @@ class VendorsScreen extends StatefulWidget {
 
 class _VendorsScreenState extends State<VendorsScreen> {
   late Future<List<Album>> pics;
-  TextEditingController _searchController = TextEditingController();
-  List<String> suggestions = [
-    "RM Weddings",
-    "RK Weddings"
-  ];
+  final TextEditingController _searchController = TextEditingController();
+  final VendorSearchController _vendorSearchController =
+      Get.put(VendorSearchController());
 
   Future<List<Album>> fetchAlbum() async {
     final response = await http.get(
@@ -61,16 +85,10 @@ class _VendorsScreenState extends State<VendorsScreen> {
   void _onSearchChanged() {
     String query = _searchController.text;
     if (query.isNotEmpty) {
-      fetchSuggestions(query);
+      _vendorSearchController.search(query);
     } else {
-      setState(() {
-        suggestions.clear();
-      });
+      _vendorSearchController.responses.value = SearchResponse();
     }
-  }
-
-  Future<void> fetchSuggestions(String query) async {
-    final response = ["asda", "sdfsdf", "rtyrt"];
   }
 
   @override
@@ -117,19 +135,44 @@ class _VendorsScreenState extends State<VendorsScreen> {
                   ),
                 ),
               ),
-              if (suggestions.isNotEmpty)
-                SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                    itemCount: suggestions.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(suggestions[index]),
-                        onTap: () {},
-                      );
-                    },
-                  ),
-                ),
+              Obx(() {
+                if (_vendorSearchController.responses.value.vendor.isNotEmpty) {
+                  return Container(
+                    margin: const EdgeInsets.only(top: 60, left: 10, right: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount:
+                          _vendorSearchController.responses.value.vendor.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(_vendorSearchController
+                              .responses.value.vendor[index].name),
+                          onTap: () {
+                            Get.toNamed(RoutesConstant.userVendorProfile,
+                                arguments: {
+                                  "vendorID": _vendorSearchController
+                                      .responses.value.vendor[index].iD
+                                });
+                          },
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return SizedBox.shrink();
+                }
+              }),
             ],
           ),
           Container(
@@ -162,11 +205,11 @@ class _VendorsScreenState extends State<VendorsScreen> {
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 14,
                     ),
-                    itemCount: snapshot.data!.length,
+                    itemCount: imageCategories.length,
                     itemBuilder: (context, index) {
                       return CategoryTile(
-                        imageUrl: snapshot.data![index].url,
-                        category: "Random",
+                        imageUrl: imageCategories[index]["imageURL"]!,
+                        category: imageCategories[index]["category_name"]!,
                       );
                     },
                   );

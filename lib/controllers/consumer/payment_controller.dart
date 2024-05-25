@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 class PaymentController extends GetxController {
   var isLoading = false.obs;
-
   final box = GetStorage();
 
   @override
@@ -28,8 +27,9 @@ class PaymentController extends GetxController {
     try {
       isLoading(false);
       var result = await PaymentService.makePayment();
-      if(result) {
-        Get.offAllNamed(RoutesConstant.vendorPortfolio);
+      if (result) {
+        // Get.offAllNamed(RoutesConstant.vendorPortfolio);
+        Get.snackbar("Payment Provider", "Test Mode Failure");
       } else {
         Get.snackbar("Payment Provider", "Payment not successful");
       }
@@ -40,5 +40,4 @@ class PaymentController extends GetxController {
       isLoading(false);
     }
   }
-
 }
