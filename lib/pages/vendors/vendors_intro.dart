@@ -50,7 +50,7 @@ class _VendorsIntroState extends State<VendorsIntro> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.transparent,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(

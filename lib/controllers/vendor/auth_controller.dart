@@ -29,14 +29,16 @@ class AuthController extends GetxController {
     if (authResponse != null) {
       storage.write(key: "FWORLD_VENDOR_TOKEN", value: authResponse.token);
       box.write("email", email);
+      storage.write(key: "email", value: email);
+      storage.write(key: "isLoggedIn", value: "true");
+      storage.write(key: "userType", value: "vendor");
       Get.offAndToNamed(RoutesConstant.vendorEmailVerification);
     }
   }
 
-
   login(String email, String password) async {
     var authResponse = await VendorService.login(email, password);
-    if(authResponse != null) {
+    if (authResponse != null) {
       storage.write(key: "FWORLD_VENDOR_TOKEN", value: authResponse.token);
       box.write("email", email);
       Get.offAllNamed(RoutesConstant.vendorNavigation);

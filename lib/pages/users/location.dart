@@ -1,11 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/pages/users/navigation.dart';
-
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLocationScreen extends StatefulWidget {
   const UserLocationScreen({super.key});
@@ -25,22 +25,44 @@ class _UserLocationScreenState extends State<UserLocationScreen> {
   }
 
   Future<void> _fetchLocations() async {
-    final String url = 'location';
+    final String url =
+        'https://fworl-backend-production.up.railway.app/locations';
     try {
       final response = await http.get(Uri.parse(url));
       final jsonData = jsonDecode(response.body);
       setState(() {
         _locations = jsonData['locations'];
-        _filteredLocations = List.from(_locations);
+        _filteredLocations = [
+          "Thrissur",
+          "Trivandrum",
+          "Kollam",
+          "Kottayam",
+          "Calicut",
+          "Palakkad",
+          "Ernakulam",
+          "Malapuram"
+        ];
       });
     } catch (e) {
       print('Error fetching locations: $e');
+      setState(() {
+        _filteredLocations = [
+          "Thrissur",
+          "Trivandrum",
+          "Kollam",
+          "Kottayam",
+          "Calicut",
+          "Palakkad",
+          "Ernakulam",
+          "Malapuram"
+        ];
+      });
     }
   }
 
   Future<void> _saveSelectedLocation(String location) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selected_location', location);
+    final box = GetStorage();
+    await box.write('selected_location', location);
   }
 
   @override
@@ -77,10 +99,9 @@ class _UserLocationScreenState extends State<UserLocationScreen> {
                     _filteredLocations[index],
                     style: TextStyle(color: Colors.white),
                   ),
-                  onTap: () {
-                    _saveSelectedLocation(_filteredLocations[index]);
-                    Navigator.of(context)
-                        .popAndPushNamed(NavigationScreen.routeName);
+                  onTap: () async {
+                    await _saveSelectedLocation(_filteredLocations[index]);
+                    Get.offAllNamed(RoutesConstant.userNavigation);
                   },
                 ),
               ),

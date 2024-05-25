@@ -51,7 +51,7 @@ class _UserIntroState extends State<UserIntro> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.transparent,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(

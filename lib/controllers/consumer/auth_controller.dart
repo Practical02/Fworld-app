@@ -33,12 +33,14 @@ class AuthController extends GetxController {
     }
   }
 
-
   loginConsumer(String email, String password) async {
     var authResponse = await ConsumerService.login(email, password);
-    if(authResponse != null) {
+    if (authResponse != null) {
       storage.write(key: "FWORLD_CONSUMER_TOKEN", value: authResponse.token);
       box.write("email", email);
+      storage.write(key: "email", value: email);
+      storage.write(key: "isLoggedIn", value: "true");
+      storage.write(key: "userType", value: "consumer");
       Get.offAllNamed(RoutesConstant.userNavigation);
     }
   }

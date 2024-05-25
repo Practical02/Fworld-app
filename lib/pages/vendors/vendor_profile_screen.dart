@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:function_world_app/constants/routes_constant.dart';
 import 'package:function_world_app/pages/users/user_intro.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:function_world_app/core/app_colors.dart';
 import 'package:function_world_app/widgets/fav_tiles.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class VendorProfileScreen extends StatefulWidget {
   const VendorProfileScreen({super.key});
@@ -15,6 +18,8 @@ class VendorProfileScreen extends StatefulWidget {
 
 class _VendorProfileScreenState extends State<VendorProfileScreen> {
   late Future<List<Album>> pics;
+
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
   Future<List<Album>> fetchAlbum() async {
     final response = await http.get(
@@ -29,6 +34,11 @@ class _VendorProfileScreenState extends State<VendorProfileScreen> {
     } else {
       throw Exception('Failed to load album');
     }
+  }
+
+  Future<void> logout() async {
+    await secureStorage.deleteAll();
+    Get.offAllNamed(RoutesConstant.userIntro);
   }
 
   @override
